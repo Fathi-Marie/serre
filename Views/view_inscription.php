@@ -18,18 +18,6 @@ require_once('Layout/view_header.php');
 </h1>
 <div class= "formulaire">
 <form action="?controller=inscription&action=sinscrire" method="POST">
-    <div class="dropdown">
-        <button type="button" class="dropdown-btn" id="dropdownBtn">
-            Status  <span class="arrow"></span>
-        </button>
-        <ul class="dropdown-menu" id="dropdownMenu">
-            <li data-value="Etudiant">Étudiant </li>
-            <li data-value="Particuliers">Particuliers </li>
-        </ul>
-        <!-- Champ caché pour transmettre la valeur sélectionnée -->
-        <input type="hidden" id="status" name="status" value="">
-    </div>
-
     <br><br>
     <input type="text" id="nom" name="nom" placeholder="Nom" required>
     <input type="text" id="prenom" name="prenom" placeholder="Prénom"  required>

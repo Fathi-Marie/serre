@@ -22,14 +22,15 @@ class Controller_connexion extends Controller {
             $_SESSION['prenom'] = $personne['prénom'];
             $data = ["erreur" => false]; 
 
-            if ($model->hasRole($idpersonne, 'Admin')) {
-                header('Location: ?controller=admin&action=admin');
-                return;
-            }
-            if ($model->hasRole($idpersonne, 'Propriétaire')) {
-                header('Location: ?controller=acceuil&action=acceuil');
-                return;
-            }
+//            if ($model->hasRole($idpersonne, 'Admin')) {
+//                header('Location: ?controller=admin&action=admin');
+//                return;
+//            }
+//            if ($model->hasRole($idpersonne, 'Propriétaire')) {
+//                header('Location: ?controller=acceuil&action=acceuil');
+//                return;
+//            }
+
             header('Location: ?controller=acceuil&action=acceuilController');
         } 
         else { 

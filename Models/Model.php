@@ -195,5 +195,10 @@ class Model {
            return $all->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getIdPersonne($email) {
+        $stmt = $this->db->prepare("SELECT id FROM Personne WHERE email = :email");
+        $stmt->execute(['email' => $email]);
+        return $stmt->fetchColumn();
+    }
 }
 ?>

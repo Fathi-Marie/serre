@@ -23,7 +23,6 @@ class Controller_inscription extends Controller {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $model = Model::getModel();
             // Récupération des données POST
-            $status = $_POST['status'];
             $nom = $_POST['nom'];
             $prenom = $_POST['prenom'];
             $telephone = $_POST['phone'];
@@ -100,7 +99,7 @@ class Controller_inscription extends Controller {
                 $_SESSION['idpersonne'] = $model->getIdPersonne($email);
                 $_SESSION['prenom'] = $prenom;
                 $data = ["message" => null];
-                $this->render("pagelogement", $data);
+                $this->render("accueil", $data);
             } else {
                 echo "Erreur lors de l'inscription.";
             }
