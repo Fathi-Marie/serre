@@ -1,0 +1,389 @@
+
+
+body {
+    font-family: sans-serif;
+    background:linear-gradient(180deg, rgba(171, 201, 89, 0.5) 23.5%, rgba(255, 255, 255, 0.5) 100%);
+    height: 100%; /* Pour gérer le positionnement des éléments */
+    flex-direction: column;
+    align-items: center;
+}
+h1 {
+    display: block;
+    color: #23435c; /* Texte bleu */
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+form {
+    width:405px;
+    margin: 0 auto; /* Centre le formulaire horizontalement */
+}
+
+.formulaire{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+/* Conteneur principal du PREMIER menu déroulant */
+.dropdown {
+    position: relative; /* Permet de positionner le menu déroulant par rapport à ce conteneur */
+    display: inline-block; /* Affiche le conteneur en ligne avec d'autres éléments */
+}
+
+/* Bouton du menu déroulant */
+.dropdown-btn {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+
+    background-color: #fff; /* Fond blanc */
+    padding: 20px 40px; /* Plus d'espace intérieur */
+    width: 200px; /* Ajuste la largeur de son conteneur parent */
+    height: 20px;
+    border: none;
+
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 1.5px;
+    /* identical to box height, or 0% */
+    letter-spacing: 0.05em;
+    color: rgba(0, 0, 0, 0.50);
+
+    display: flex; /* Utilisation de Flexbox pour aligner le contenu */
+    justify-content: space-between; /* Espace le contenu horizontalement entre les bords */
+    align-items: center; /* Centre verticalement le contenu du bouton */
+    cursor: pointer; /* Change le curseur en main lorsque l'on survole le bouton */
+    transition: background-color 0.5s ease; /* Transition douce pour la couleur de fond au survol */
+}
+
+.dropdown-btn:hover {
+    background-color: #1a2f3d; /* Change la couleur de fond au survol */
+    color: white; /* Change la couleur du texte au survol */
+}
+
+
+/* Contenu du menu déroulant */
+.dropdown-menu {
+    display: none; /* Masque le menu par défaut */
+    position: absolute; /* Positionne le menu de manière absolue par rapport au conteneur parent */
+    background-color: #fff; /* Couleur de fond du menu déroulant */
+    border-radius: 10px; /* Arrondit les coins du menu */
+    box-shadow: 0 4px 4px 0 #00000040; /* Ombre douce autour du menu */
+    margin-top: 1px; /* Décalage vers le bas pour séparer le menu du bouton */
+    padding: 10px 0; /* Espacement vertical dans le menu */
+    width: 100%; /* Prend la largeur du conteneur parent (le bouton) */
+    list-style: none; /* Supprime les puces de liste par défaut */
+}
+
+/* Menu déroulant liens à l'intérieur du menu */
+.dropdown-menu li {
+    padding: 10px 20px; /* Espace intérieur des éléments du menu */
+    color: #333; /* Couleur du texte des éléments du menu */
+    cursor: pointer; /* Change le curseur en main pour indiquer que les éléments sont cliquables */
+}
+
+.dropdown-menu li:hover {
+    background-color: #f0f0f0; /* Change le fond des éléments au survol */
+}
+
+/* Afficher le menu déroulant au survol du conteneur */
+.dropdown:hover .dropdown-menu {
+    display: block; /* Affiche le menu lorsque l'on survole le conteneur */
+}
+
+
+
+/* Telephone */
+
+/*DEUXIEME menue déroulant*/
+
+
+/* Conteneur principal */
+.phone-input-container {
+    display: flex;
+    align-items: center;
+    
+    padding : 0px 0 0 0;
+
+    background-color: #fff; /* Fond blanc */
+    border: 2px solid transparent; /* Bordure fine, transparente par défaut */
+    border-radius: 10px;
+    box-shadow: 0 4px 4px 0 #00000040;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 1.5px;
+    /* identical to box height, or 0% */
+    letter-spacing: 0.05em;
+    color: rgba(0, 0, 0, 0.50);
+
+    width: 400px;
+    transition: border-color 0.2s; /* Ajoute une transition pour un effet fluide */
+}
+
+/* Effet au focus avec une apparence de bordure bleue */
+.phone-input-container:focus-within {
+    border-color: #55a9e9; /* Change la couleur de la bordure */
+}
+
+
+/* menu déroulant */
+
+
+.country-code-select {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 12px; /* Ajuste la taille du texte à l'intérieur */
+    width: 50px;
+    padding: 0 0 0 15px;
+    appearance: none;
+    text-align: center;
+    box-shadow: none !important; /* Supprime toute ombre */
+    flex-shrink: 0; /* Empêche le bouton de rétrécir */
+}
+
+/* Séparateur vertical entre le menu déroulant et le champ de saisie */
+.separator {
+    content: '';
+    display: inline-block; /* Assure que la ligne soit visible */
+    width: 2px; /* Largeur de la ligne */
+    height: 44px; /* Hauteur de la ligne (ajustable) */
+    background-color: #070606; /* Couleur de la ligne */
+    margin: 0 6px; /* Ajoute de l'espace autour de la ligne */
+}
+
+/* Champ de saisie téléphone */
+/* Champ de saisie téléphone (normal, sans focus) */
+.phone-number-input {
+    border: none;
+    border-radius: 10px; /* Coins carrés */
+    outline: none;
+    padding: 6px 0;
+    font-style: normal;
+    font-weight: normal; /* Par défaut, poids normal */
+    font-size: 14px; /* Taille de police par défaut plus petite */
+    line-height: normal;
+    color: rgba(0, 0, 0, 0.50); /* Couleur de texte par défaut */
+    box-shadow: none !important; /* Supprime toute ombre */
+    flex-grow: 1; /* Permet au champ de saisie de prendre l'espace restant */
+    padding-right: 75px; /* Ajoute un léger espace à droite */
+}
+
+/* Quand l'utilisateur commence à taper (focus) */
+.phone-number-input:focus {
+    font-style: normal;
+    color: rgb(0, 0, 0); /* Reste la même couleur */
+}
+
+#nom,
+#prenom {
+    padding: 12px 41px; /* Plus d'espace intérieur */
+    width: 117px;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 4px 0 #00000040;
+    border: None;
+}
+
+/* Icônes dans les champs */
+.input-group {
+    position: relative; /* Nécessaire pour positionner les icônes par rapport au champ */
+}
+
+/* Positionnement des icônes */
+.input-group .icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Icône du cadenas */
+.input-group #icon-lock, #icon-mail,
+select {
+    left: 10px; /* Positionne l'icône à gauche du champ */
+    width: 20px; /* Ajuste la taille du cadenas */
+    height: auto;
+}
+
+/* Icône de l'œil */
+.input-group #eye-toggle {
+    left: 380px; /* Positionne l'icône à 5px du bord droit du champ */
+    width: 20px; /* Ajuste la taille de l'œil */
+    height: auto;
+    cursor: pointer;
+    z-index: 1; /* Assure que l'icône de l'œil soit au-dessus de l'input */
+}
+
+input[type="mail"],
+#password1,
+#password2,
+select{
+    padding: 12px 40px; /* Plus d'espace intérieur */
+    background-color: #fff; /* Fond blanc */
+    border: none; /* Suppression des contours */
+    width: 325px;
+    height: 20px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 4px 0 #00000040;
+}
+
+/* Aligner la case à cocher à gauche du texte */
+.Donnee, .Condition {
+    display: flex; /* Utilisation de Flexbox pour aligner horizontalement */
+    align-items: center; /* Assure que la case à cocher et le texte sont alignés verticalement */
+}
+
+
+
+/* Style de la case à cocher */
+input[type="checkbox"] {
+    margin: 0 10px 0 0; /* Supprime la marge par défaut de la case à cocher */
+    box-shadow: none; /* Retire toute ombre portée */
+    width: 20px; /* Ajuste la taille de la case si nécessaire */
+    height: 20px; /* Ajuste la hauteur */
+}
+
+/* Texte à côté de la case à cocher */
+p {
+    margin: 0; /* Marges correctement spécifiées */
+}
+
+
+.button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+/* Pour les téléphones */
+
+@media (max-width: 768px) {
+    /* Corps de la page */
+    body {
+        padding: 5px; /* Réduit les marges ou padding */
+        font-size: 16px; /* Taille de texte lisible sans zoom excessif */
+    }
+
+    /* Titre */
+    h1 {
+        font-size: 18px; /* Réduction de la taille pour un meilleur rendu */
+        text-align: center;
+        margin-bottom: 10px; /* Espacement réduit avec les éléments suivants */
+    }
+
+    /* Formulaire */
+    form {
+        margin: 0 auto; /* Centre le formulaire */
+        width: 90%; /* Largeur relative pour s'adapter à l'écran */
+    }
+    
+    
+    /* Bouton dropdown */
+    .dropdown-btn {
+        width: 110%;
+        padding: 18px; /* Espacement réduit */
+    }
+
+    .ContenaireTelephone {
+        margin-top: 15px;
+    }
+    
+    /* Conteneur principal téléphone */
+    .phone-input-container {
+        width: 100% ;
+        margin-top: -10px;
+        height: 35px; /* Spécifiez la hauteur souhaitée */
+    }
+
+
+    .separator {
+        height: 100%; /* Hauteur de la ligne (ajustable) */
+        position: relative; /* Assurez-vous qu'il ait une position définie */
+        background-color: black; /* Assurez-vous que le fond est visible */
+    }
+
+
+    /* Menu déroulant du code pays */
+    .country-code-select {
+        font-size: 14px; /* Taille lisible pour mobile */
+        padding: 5px 8px; /* Réduction de l'espace intérieur */
+        margin: 0; /* Supprimez toute marge inutile */
+    }
+    
+    .phone-number-input{
+        width: 100%;
+        height: 6px; /* Spécifiez la hauteur souhaitée */
+
+    }
+    
+    /* Champs d'entrée généraux */
+    input[type="mail"],
+    input[type="password"],
+    #password1,
+    #password2,
+    #nom,
+    #prenom,
+    select {
+        border: None;
+        width: calc(100% - 30px); /* Ajustement dynamique pour inclure des marges */
+        padding: 8px 18px; /* Espacement réduit */
+        font-size: 14px; /* Texte ajusté pour éviter un effet trop zoomé */
+        
+    }
+    
+    #nom,
+    select{
+        margin-bottom: 25px; /* Ajoute de l'espace entre les champs */
+    }
+
+    #prenom{
+        margin-bottom: -25px;
+    }
+    
+    
+    /* Réduction de la taille des icônes */
+    .input-group .icon {
+        width: 5px; /* Réduisez la largeur des icônes */
+        top: 50%;
+    }
+
+    .input-group #eye-toggle{
+        left: 95%;
+    }
+
+    /* Ajustement pour le cadenas et les autres icônes */
+    .input-group #icon-lock, 
+    .input-group #icon-mail, 
+    select {
+        left: 3px; /* Ajustez si nécessaire pour réduire l'espace à gauche */
+        width: 15px; /* Réduction similaire */
+        height: auto;
+    }
+
+
+
+    /* Boutons */
+    .button-container {
+        flex-direction: column; /* Les boutons s'empilent verticalement */
+        align-items: center;
+    }
+    /* Cases à cocher */
+    input[type="checkbox"] {
+        width: 15px; /* Réduit la largeur */
+        height: 15px; /* Réduit la hauteur */
+    }
+    /* Texte descriptif */
+    p {
+        margin: 0 auto;
+        font-size: 14px; /* Taille de texte légèrement réduite */
+        text-align: center;
+    }
+}

@@ -1,0 +1,140 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar générale */
+.navbar {
+    color: var(--blue);
+    background-color: white;
+    position: relative;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 2%;
+}
+
+.navbar-logo img {
+    width: 70%;
+    height: 9%;
+}
+
+.navbar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--blue);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.navbar-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 70%;
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+    justify-content: space-around; /* Aligne les éléments avec espace autour */
+    align-items: center;
+    width: 100%;
+}
+
+.navbar-links li a {
+    color: var(--blue);
+    text-decoration: none;
+    font-size: large;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+.navbar-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: end;
+    img{
+        min-height: 45px;
+        width: auto;
+
+    }
+}
+
+.btn-account button {
+    background-color: white;
+    flex-wrap: nowrap;
+}
+
+.btn-account button:hover {
+    background-color: var(--blue);
+    color: white;
+    border: var(--blue);
+}
+
+.icon-translate img {
+    height: 20px;
+}
+
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+  }
+  
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  
+  .down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+
+/* Responsiveness */
+@media (max-width: 1054px) {
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-menu {
+        display:none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* S'affiche juste en dessous de la navbar */
+        left: 0;
+        width: 100%;
+        background-color: #f9f9f9; /* Fond du menu déroulant */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Léger effet d'ombre */
+        padding: 10px 0;
+        border-radius: 5px;
+    }
+
+    .navbar-menu.active {
+        display: flex; /* Affiche le menu lorsqu'il est actif */
+    }
+
+    .navbar-links {
+        flex-direction: column;
+        gap: 10px;
+        align-items: baseline;
+        padding-left: 70%;
+    }
+
+    li{
+        text-align: left;
+    }
+    .navbar-right {
+        flex-direction: column;
+        gap: 10px;
+        display: flex;
+    }
+}

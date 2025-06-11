@@ -1,0 +1,102 @@
+:root {
+    --primary-color: #0066cc;
+    --secondary-color: #005bb5;
+    --blue: #23435C;
+    --green: #A9CA59;
+    --bleu-claire:#DFEFFC;
+    --degrader-vert: linear-gradient(180deg, rgba(171, 201, 89, 0.5) 23.5%, rgba(255, 255, 255, 0.5) 100%);
+    --degrader-gris: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 23.5%, rgba(2, 0, 0, 0) 100%);
+}
+
+
+body {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f4f4f4;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 20px;
+    color: #444;
+}
+.h1{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 27px;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.button{
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 25px;
+    background: var(--green);
+    color: var(--blue);
+    border: 3px solid #ABC959;
+    border-radius: 90px;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 0;
+    font-weight: 700;
+}
+
+.button:hover {
+    background-color: var(--blue);
+    color: var(--green);
+}
+
+input {
+    width: 455px;
+    height: 32px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 10px;
+}
+/* Votre adresse email */
+
+input::placeholder{
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 1.5px;
+    /* identical to box height, or 0% */
+    letter-spacing: 0.05em;
+    color: rgba(0, 0, 0, 0.50);
+}
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Grid utility class */
+.grid {
+    display: grid;
+    gap: 20px;
+}
+
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }

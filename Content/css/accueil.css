@@ -1,0 +1,226 @@
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.part1 {
+    height: 400px;
+    background-image: url('../Images/Accueil/fond.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 20px;
+    padding-left: 5%;
+}
+
+.part1 h1 {
+    color: white;
+    font-size: 3em;
+}
+
+.part1 button {
+    background-color: #a9ca59;
+    color: #23435c;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 17px 25px;
+    border-radius: 30px;
+    font-size: larger;
+    border: none;
+    cursor: pointer;
+}
+
+.part2 .row{
+    background-color: #d6e6af;
+    padding: 30px;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+}
+
+.part2 .element {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex: 1 1 calc(25% - 20px);
+    max-width: calc(25% - 20px);
+    box-sizing: border-box;
+}
+
+.part2 img {
+    width: 50px;
+    height: 50px;
+}
+
+.part2 h3 {
+    margin-left: 20px;
+    color: #23435c;
+    text-transform: uppercase;
+    font-size: large;
+}
+
+.part3 {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.part3 h1 {
+    text-align: center;
+    color: #23435c;
+    font-size: 2.2rem;
+    font-weight: 600;
+    padding: 1%;
+}
+
+.part3 .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 10%;
+    gap: 20px;
+}
+
+.part3 .box {
+    display: flex;
+    flex: 1 1 calc(23% - 10px);
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    max-width: 261px;
+    height: 163px;
+    border-radius: 20px;
+}
+
+.part3 .box img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+}
+
+.part3 .box h3 {
+    color: #23435c;
+    font-weight: 600;
+    font-size: medium;
+    margin: 10px 0;
+}
+
+.part3 button {
+    background-color: #a9ca59;
+    color: #23435c;
+    text-transform: uppercase;
+    font-weight: 900;
+    border-radius: 30px;
+    font-size: larger;
+    border: none;
+    cursor: pointer;
+    margin: 3%;
+    align-self: center;
+    padding: 1% 2%;
+}
+
+
+.part4{
+    .box-container {
+        display: flex;
+        flex-wrap: wrap; /* Permet le retour à la ligne sur petits écrans */
+        gap: 10px; /* Réduit l'espacement entre les boxes */
+        justify-content: space-around;
+    }
+
+    /* Style des boxes */
+    .box {
+        flex: 1 1 calc(23% - 10px); /* Largeur ajustée à 23% pour réduire l'espace entre */
+        border: 1px solid #ddd;
+        background-color: #DFEFFC;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+        text-align: left;
+        padding: 1%;
+        max-width: 285px;
+        height: 356px;
+    }
+
+    /* Contenu des headers */
+    .box-header {
+        display: flex;
+        align-items: flex-start; /* Aligne l'image avec le texte */
+        gap: 8px; /* Réduit l'espace entre l'image et le texte */
+        padding-left: 15px;
+        padding-top: 2%;
+        width: 100%;
+    }
+
+    /* Image */
+    .box img {
+        width: 30px;
+        height: 30px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    /* Titre */
+    .box h3 {
+        margin: 0;
+        font-size: 16px; /* Légèrement réduit pour optimiser l'espace */
+        color: #23435c;
+        text-align: center;
+        align-self:center;
+        letter-spacing: 0.05em;
+        font-style: normal;
+        font-weight: 700;
+    }
+
+    /* Texte descriptif */
+    .box p {
+        padding: 15% 5%;
+        color: #23435c;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+    }
+}
+
+
+@media (max-width: 930px) {
+    .part2 .row {
+        flex-wrap: wrap; /* Permet de placer les éléments sur plusieurs lignes */
+        justify-content: center;
+    }
+
+    .part2 .element {
+        flex: 1 1 100%; /* Les éléments prennent toute la largeur */
+        max-width: 100%; /* Maximum à 100% */
+        flex-direction: column; /* Empile les contenus verticalement */
+        align-items: center; /* Centre les contenus de chaque élément */
+        text-align: center; /* Centre le texte */
+    }
+
+    .part2 img {
+        margin-bottom: 10px; /* Ajoute un espace entre l'image et le texte */
+    }
+
+    .part2 h3 {
+        margin-left: 0; /* Supprime le décalage gauche */
+    }
+
+    .part1 h1 {
+        font-size: 2.5em;
+    }
+
+    .part3 .row{
+        display: flex;
+        justify-content: center;
+    }
+    .part3 .box {
+        flex: 1 1 100%;
+    }
+
+    .part4 .box {
+        flex: 1 1 100%;
+    }
+}
