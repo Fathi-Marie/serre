@@ -58,6 +58,18 @@
                 <ul id="actionneursList" class="list-group list-group-flush mt-3"></ul>
             </div>
         </div>
+        <!-- Gaz (Graphique) -->
+        <div class="col-6">
+            <div class="card p-3" style="height: 450px;">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="card-title mb-0">Concentration de gaz</h5>
+                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalGaz">
+                        Voir en grand
+                    </button>
+                </div>
+                <canvas id="gazChart" style="height: 250px; width: 100%;"></canvas>
+            </div>
+        </div>
 
     </div>
 </div>
@@ -97,6 +109,25 @@
                     <option value="month">Mois</option>
                 </select>
                 <canvas id="luminositeChartLarge" style="height: 400px; width: 100%;"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Gaz -->
+<div class="modal fade" id="modalGaz" tabindex="-1" aria-labelledby="modalGazLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content" style="height: 750px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalGazLabel">Gaz - Vue étendue</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+            <div class="modal-body">
+                <select id="gazPeriod" class="form-select mb-3" style="width: 150px;">
+                    <option value="day" selected>Jour</option>
+                    <option value="week">Semaine</option>
+                    <option value="month">Mois</option>
+                </select>
+                <canvas id="gazChartLarge" style="height: 400px; width: 100%;"></canvas>
             </div>
         </div>
     </div>
