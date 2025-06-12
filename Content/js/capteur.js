@@ -193,29 +193,49 @@
 }
 });
 
-    // --- Affichage du niveau de gaz ---
-    const latestGaz = gazData.length ? gazData[gazData.length - 1].value : 0;
-    const seuilCritique = 700;
-    const gazLevel = document.getElementById('gazLevel');
-    const gazValue = document.getElementById('gazValue');
+    const gazChart = new Chart(document.getElementById('gazChart').getContext('2d'), {
+        type: 'line',
+        data: {
+            labels: gazData.map(d => formatDate(d.date)),
+            datasets: [{
+                label: 'Concentration de gaz (ppm)',
+                data: gazData.map(d => d.value),
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                fill: true,
+                tension: 0.2,
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            scales: { y: { beginAtZero: true } }
+        }
+    });
 
-    const percentage = Math.min(100, (latestGaz / seuilCritique) * 100);
-    gazLevel.style.width = percentage + '%';
-    gazLevel.style.backgroundColor = latestGaz >= seuilCritique ? 'red' : latestGaz >= seuilCritique * 0.7 ? 'orange' : 'green';
-    gazValue.textContent = latestGaz + ' ppm';
+    //actioneurs
+    document.addEventListener("DOMContentLoaded", () => {
+        const actionneurs = [
+            { nom: "Ventilateur", etat: "Allumé" },
+            { nom: "Lumière", etat: "Éteinte" },
+            { nom: "Pompe", etat: "Allumée" }
+        ];
 
-    // --- Affichage des actionneurs ---
-    const actuatorsList = document.getElementById('actionneursList');
-    actionneursState.forEach(actuator => {
-    const li = document.createElement('li');
-    li.className = 'list-group-item d-flex justify-content-between align-items-center';
-    li.textContent = actuator.name;
-    const badge = document.createElement('span');
-    badge.className = 'badge rounded-pill ' + (actuator.state ? 'bg-success' : 'bg-secondary');
-    badge.textContent = actuator.state ? 'ON' : 'OFF';
-    li.appendChild(badge);
-    actuatorsList.appendChild(li);
-});
+        const actionneursList = document.getElementById("actionneursList");
+        actionneursList.innerHTML = "";
+
+        actionneurs.forEach(act => {
+            const li = document.createElement("li");
+            li.className = "list-group-item d-flex justify-content-between align-items-center";
+            li.textContent = act.nom;
+
+            const badge = document.createElement("span");
+            badge.className = `badge ${act.etat.startsWith("Allum") ? 'bg-success' : 'bg-secondary'} rounded-pill`;
+            badge.textContent = act.etat;
+
+            li.appendChild(badge);
+            actionneursList.appendChild(li);
+        });
+    });
 
     // --- Gestion du grand graphique dans modal ---
     let tempHumChartLarge = null;
@@ -253,3 +273,68 @@
     document.getElementById('modalLuminosite').addEventListener('shown.bs.modal', function () {
     document.getElementById('lumPeriod').dispatchEvent(new Event('change'));
 });
+
+    let gazChartLarge = null;
+    document.getElementById('gazPeriod').addEventListener('change', function () {
+        const period = this.value;
+        if (gazChartLarge) gazChartLarge.destroy();
+        gazChartLarge = createLargeChart(
+            gazChartLarge,
+            document.getElementById('gazChartLarge').getContext('2d'),
+            gazData,
+            'Concentration de gaz (ppm)',
+            'rgba(255, 99, 132, 1)',
+            'rgba(255, 99, 132, 0.2)',
+            period
+        );
+    });
+    document.getElementById('modalGaz').addEventListener('shown.bs.modal', function () {
+        document.getElementById('gazPeriod').dispatchEvent(new Event('change'));
+    });
+
+    function colorizeValue(value, type) {
+        if (type === 'temp') {
+            if (value < 15) return { color: 'blue', label: `${value} °C` };
+            if (value <= 28) return { color: 'green', label: `${value} °C` };
+            return { color: 'orange', label: `${value} °C` };
+        }
+        if (type === 'gaz') {
+            if (value < 500) return { color: 'green', label: `${value} ppm` };
+            if (value < 700) return { color: 'orange', label: `${value} ppm` };
+            return { color: 'red', label: `${value} ppm` };
+        }
+        if (type === 'lum') {
+            if (value < 300) return { color: 'blue', label: `${value} lux` };
+            if (value < 700) return { color: 'green', label: `${value} lux` };
+            return { color: 'red', label: `${value} lux` };
+        }
+        return { color: 'gray', label: value };
+    }
+
+    function updateSummary() {
+        const tempVal = tempHumData.length ? tempHumData[tempHumData.length - 1].value : null;
+        const gazVal = gazData.length ? gazData[gazData.length - 1].value : null;
+        const lumVal = luminositeData.length ? luminositeData[luminositeData.length - 1].value : null;
+
+        const temp = colorizeValue(tempVal, 'temp');
+        const gaz = colorizeValue(gazVal, 'gaz');
+        const lum = colorizeValue(lumVal, 'lum');
+
+        const tempElem = document.getElementById('resumeTemp');
+        const gazElem = document.getElementById('resumeGaz');
+        const lumElem = document.getElementById('resumeLum');
+
+        tempElem.textContent = temp.label;
+        tempElem.style.backgroundColor = temp.color;
+        tempElem.style.color = 'white';
+
+        gazElem.textContent = gaz.label;
+        gazElem.style.backgroundColor = gaz.color;
+        gazElem.style.color = 'white';
+
+        lumElem.textContent = lum.label;
+        lumElem.style.backgroundColor = lum.color;
+        lumElem.style.color = 'white';
+    }
+
+    updateSummary();

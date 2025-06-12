@@ -41,15 +41,26 @@
         </div>
 
         <!-- Gaz (Jauge) -->
-        <div class="col-6">
-            <div class="card p-3 d-flex flex-column align-items-center justify-content-center" style="height: 350px;">
-                <h5 class="card-title">Gaz (Jauge de seuil critique)</h5>
-                <div id="gazIndicator" class="w-100 mt-3" style="height: 30px; background-color: #ddd; border-radius: 5px; position: relative;">
-                    <div id="gazLevel" style="height: 100%; width: 0%; background-color: green; border-radius: 5px;"></div>
-                    <span id="gazValue" style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); color: white; font-weight: bold;"></span>
+        <div class="col-12">
+            <div class="card p-3" style="height: 150px;">
+                <h5 class="card-title mb-3">Résumé des dernières mesures</h5>
+                <div class="d-flex justify-content-around text-center">
+                    <div>
+                        <div>Température</div>
+                        <div id="resumeTemp" class="fw-bold px-2 py-1 rounded">--</div>
+                    </div>
+                    <div>
+                        <div>Gaz</div>
+                        <div id="resumeGaz" class="fw-bold px-2 py-1 rounded">--</div>
+                    </div>
+                    <div>
+                        <div>Luminosité</div>
+                        <div id="resumeLum" class="fw-bold px-2 py-1 rounded">--</div>
+                    </div>
                 </div>
             </div>
         </div>
+
 
         <!-- Actionneurs -->
         <div class="col-6">
