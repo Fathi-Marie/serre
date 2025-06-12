@@ -31,7 +31,7 @@ class Controller_connexion extends Controller {
 //                return;
 //            }
 
-            header('Location: ?controller=acceuil&action=acceuilController');
+            header('Location: ?controller=capteur&action=?dashboardController');
         } 
         else { 
             $data = ["erreur" => true]; 
