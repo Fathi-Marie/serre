@@ -9,81 +9,81 @@
     <link rel="stylesheet" href="Content/css/capteur.css">
 </head>
 <body>
-<h1 class="mb-4">Dashboard Capteurs</h1>
+<h1 class="mb-4 text-center">Dashboard Capteurs</h1>
 
 <div class="container">
-    <div class="row g-3">
+    <!-- Résumé en haut, pleine largeur -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card p-3">
+                <!---<h5 class="card-title mb-3">Résumé des dernières mesures</h5>-->
+                <div class="d-flex justify-content-evenly text-center">
+                    <div style="min-width: 120px;">
+                        <div>Température</div>
+                        <h3 id="resumeTemp" class="valeur_resum">-- °C</h3>
+                    </div>
+                    <div style="min-width: 120px;">
+                        <div>Gaz</div>
+                        <h3 id="resumeGaz" class="valeur_resum">-- ppm</h3>
+                    </div>
+                    <div style="min-width: 120px;">
+                        <div>Luminosité</div>
+                        <h3 id="resumeLum" class="valeur_resum">-- lux</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <!-- Température/Humidité -->
-        <div class="col-6">
-            <div class="card p-3" style="height: 450px;">
+    <!-- Graphique + Actionneurs côte à côte -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <div class="card p-3 card-graph">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h5 class="card-title mb-0">Température / Humidité</h5>
-                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalTempHum">
-                        Voir en grand
+                    <button class="btn voirPlus btn-sm" data-bs-toggle="modal" data-bs-target="#modalTempHum">
+                        Voir plus
                     </button>
                 </div>
                 <canvas id="tempHumChart" style="height: 250px; width: 100%;"></canvas>
             </div>
         </div>
 
-        <!-- Luminosité -->
-        <div class="col-6">
-            <div class="card p-3" style="height: 450px;">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h5 class="card-title mb-0">Luminosité</h5>
-                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalLuminosite">
-                        Voir en grand
-                    </button>
-                </div>
-                <canvas id="luminositeChart" style="height: 150px; width: 100%;"></canvas>
-            </div>
-        </div>
-
-        <!-- Gaz (Jauge) -->
-        <div class="col-12">
-            <div class="card p-3" style="height: 150px;">
-                <h5 class="card-title mb-3">Résumé des dernières mesures</h5>
-                <div class="d-flex justify-content-around text-center">
-                    <div>
-                        <div>Température</div>
-                        <div id="resumeTemp" class="fw-bold px-2 py-1 rounded">--</div>
-                    </div>
-                    <div>
-                        <div>Gaz</div>
-                        <div id="resumeGaz" class="fw-bold px-2 py-1 rounded">--</div>
-                    </div>
-                    <div>
-                        <div>Luminosité</div>
-                        <div id="resumeLum" class="fw-bold px-2 py-1 rounded">--</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Actionneurs -->
-        <div class="col-6">
-            <div class="card p-3" style="height: 350px; overflow-y: auto;">
+        <div class="col-md-4" >
+            <div id="actionneursContainer" class="card p-3" style="height:380px">
                 <h5 class="card-title">Actionneurs (état actuel)</h5>
                 <ul id="actionneursList" class="list-group list-group-flush mt-3"></ul>
             </div>
         </div>
-        <!-- Gaz (Graphique) -->
-        <div class="col-6">
-            <div class="card p-3" style="height: 450px;">
+    </div>
+
+    <!-- Deux autres graphiques côte à côte -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card p-3 card-graph">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="card-title mb-0">Luminosité</h5>
+                    <button class="btn voirPlus btn-sm" data-bs-toggle="modal" data-bs-target="#modalLuminosite">
+                        Voir plus
+                    </button>
+                </div>
+                <canvas id="luminositeChart" style="height: 250px; width: 100%;"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card p-3 card-graph">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h5 class="card-title mb-0">Concentration de gaz</h5>
-                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalGaz">
-                        Voir en grand
+                    <button class="btn voirPlus btn-sm" data-bs-toggle="modal" data-bs-target="#modalGaz">
+                        Voir plus
                     </button>
                 </div>
                 <canvas id="gazChart" style="height: 250px; width: 100%;"></canvas>
             </div>
         </div>
-
     </div>
 </div>
+
 
 <!-- Modal TempHum -->
 <div class="modal fade" id="modalTempHum" tabindex="-1" aria-labelledby="modalTempHumLabel" aria-hidden="true">

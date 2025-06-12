@@ -162,8 +162,8 @@
     datasets: [{
     label: 'Température/Humidité',
     data: tempHumData.map(d => d.value),
-    borderColor: 'rgba(75, 192, 192, 1)',
-    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+    borderColor: '#768D3E',
+    backgroundColor: '#82CF11',
     fill: false,
     tension: 0.2,
 }]
@@ -181,8 +181,8 @@
     datasets: [{
     label: 'Luminosité (lux)',
     data: luminositeData.map(d => d.value),
-    borderColor: 'rgba(255, 206, 86, 1)',
-    backgroundColor: 'rgba(255, 206, 86, 0.4)',
+    borderColor: '#768D3E',
+    backgroundColor: 'rgb(169, 202, 89, 0.2)',
     fill: true,
     tension: 0.2,
 }]
@@ -200,8 +200,8 @@
             datasets: [{
                 label: 'Concentration de gaz (ppm)',
                 data: gazData.map(d => d.value),
-                borderColor: 'rgba(255, 99, 132, 1)',
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: '#A9CA59',
+                backgroundColor: 'rgb(118, 141, 62, 0.2)',
                 fill: true,
                 tension: 0.2,
             }]
@@ -247,8 +247,8 @@
     document.getElementById('tempHumChartLarge').getContext('2d'),
     tempHumData,
     'Température/Humidité',
-    'rgba(75, 192, 192, 1)',
-    'rgba(75, 192, 192, 0.2)',
+    '#768D3E',
+    'rgb(169, 202, 89, 0.2)',
     period
     );
 });
@@ -265,8 +265,8 @@
     document.getElementById('luminositeChartLarge').getContext('2d'),
     luminositeData,
     'Luminosité (lux)',
-    'rgba(255, 206, 86, 1)',
-    'rgba(255, 206, 86, 0.4)',
+    '#A9CA59',
+    'rgb(118, 141, 62, 0.2)',
     period
     );
 });
@@ -283,8 +283,8 @@
             document.getElementById('gazChartLarge').getContext('2d'),
             gazData,
             'Concentration de gaz (ppm)',
-            'rgba(255, 99, 132, 1)',
-            'rgba(255, 99, 132, 0.2)',
+            '#A9CA59',
+            'rgb(118, 141, 62, 0.2)',
             period
         );
     });
@@ -294,19 +294,19 @@
 
     function colorizeValue(value, type) {
         if (type === 'temp') {
-            if (value < 15) return { color: 'blue', label: `${value} °C` };
-            if (value <= 28) return { color: 'green', label: `${value} °C` };
-            return { color: 'orange', label: `${value} °C` };
+            if (value < 15) return { color: '#768D3E', label: `${value} °C` };
+            if (value <= 28) return { color: '#a9ca59', label: `${value} °C` };
+            return { color: '#101408', label: `${value} °C` };
         }
         if (type === 'gaz') {
-            if (value < 500) return { color: 'green', label: `${value} ppm` };
-            if (value < 700) return { color: 'orange', label: `${value} ppm` };
-            return { color: 'red', label: `${value} ppm` };
+            if (value < 500) return { color: '#a9ca59', label: `${value} ppm` };
+            if (value < 700) return { color: '#768D3E', label: `${value} ppm` };
+            return { color: '#101408', label: `${value} ppm` };
         }
         if (type === 'lum') {
-            if (value < 300) return { color: 'blue', label: `${value} lux` };
-            if (value < 700) return { color: 'green', label: `${value} lux` };
-            return { color: 'red', label: `${value} lux` };
+            if (value < 300) return { color: '#768D3E', label: `${value} lux` };
+            if (value < 700) return { color: '#a9ca59', label: `${value} lux` };
+            return { color: '#101408', label: `${value} lux` };
         }
         return { color: 'gray', label: value };
     }
@@ -325,16 +325,13 @@
         const lumElem = document.getElementById('resumeLum');
 
         tempElem.textContent = temp.label;
-        tempElem.style.backgroundColor = temp.color;
-        tempElem.style.color = 'white';
+        tempElem.style.color = temp.color;
 
         gazElem.textContent = gaz.label;
-        gazElem.style.backgroundColor = gaz.color;
-        gazElem.style.color = 'white';
+        gazElem.style.color = gaz.color;
 
         lumElem.textContent = lum.label;
-        lumElem.style.backgroundColor = lum.color;
-        lumElem.style.color = 'white';
+        lumElem.style.color = lum.color;
     }
 
     updateSummary();
