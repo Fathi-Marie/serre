@@ -166,9 +166,22 @@ class Model {
     }
 
     public function personneConnexion($email) {
-        $stat = $this->db->prepare('SeLECT * FROM Personne WHERE email = :email');
-        $stat-> execute(['email' => $email]);
-        return $stat->fetch(PDO::FETCH_ASSOC);
+        $sql = "SELECT 
+                p.*, 
+                r.nom AS role
+            FROM 
+                Personne p
+            JOIN 
+                Personne_Role pr ON p.id = pr.id_personne
+            JOIN 
+                Role r ON pr.id_role = r.id
+            WHERE 
+                p.email = :email";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['email' => $email]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function doublon($email, $telephone) {
@@ -200,5 +213,271 @@ class Model {
         $stmt->execute(['email' => $email]);
         return $stmt->fetchColumn();
     }
+
+    public function selectAllFromTable($table) {
+        /*
+        * Sélectionner toutes les entrées de la table spécifiée
+        * @param string $table - Nom de la table
+        * @return array - Tableau contenant toutes les entrées de la table
+        */
+        if ($table == 'Personne') {
+            $stmt = $this->db->query("SELECT * FROM " . $table . " WHERE etat='inactif'");
+        } else {
+            $stmt = $this->db->query("SELECT * FROM " . $table);
+        }
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getUserRoles($userId) {
+        $sql = "SELECT Role.nom FROM Personne_Role
+                JOIN Role ON Personne_Role.id_role = Role.id
+                WHERE Personne_Role.id_personne = :userId";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['userId' => $userId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function disableUser($userId, $etat) {
+        /*
+        * Désactiver un utilisateur
+        * @param int $userId - ID de l'utilisateur
+        */
+        $stmt = $this->db->prepare("UPDATE Personne SET etat = :etat WHERE id = :userId");
+        return $stmt->execute([
+            'etat' => $etat,
+            'userId' => $userId
+        ]);
+    }
+
+
+    public function assignRole($userId, $roleId) {
+        // Vérifier si l'utilisateur a déjà des rôles
+        $existingRoles = $this->getUserRoles($userId);
+
+        if (count($existingRoles) >= 1) {
+            // Mettre à jour le rôle existant
+            $sql = "UPDATE Personne_Role SET id_role = :roleId WHERE id_personne = :userId";
+            $stmt = $this->db->prepare($sql);
+            return $stmt->execute(['userId' => $userId, 'roleId' => $roleId[0]]);
+        } else {
+            // Vérifier si le rôle existe déjà
+            if (!$this->hasRole($userId, $roleId)) {
+                // Ajouter le nouveau rôle
+                $sql = "INSERT INTO Personne_Role (id_personne, id_role) VALUES (:userId, :roleId)";
+                $stmt = $this->db->prepare($sql);
+                return $stmt->execute(['userId' => $userId, 'roleId' => $roleId[0]]);
+            }
+        }
+        return false;
+    }
+
+    public function getLastValue($id_sensor) {
+        $sql = "SELECT value, date FROM data WHERE id_sensor = :id_sensor ORDER BY date DESC LIMIT 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['id_sensor' => $id_sensor]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getHistoricalDataByType($type_sensor) {
+        $sql = "SELECT d.value, d.date FROM data d
+            JOIN capteurs c ON d.id_sensor = c.id_sensor
+            WHERE c.type = :type_sensor
+            ORDER BY d.date ASC";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['type_sensor' => $type_sensor]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getActuatorsState() {
+        $sql = "SELECT id_actuator, name, state FROM actuators";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getUserById($id) {
+        $stmt = $this->db->prepare("SELECT * FROM Personne WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
+    public function updateUserPassword($id, $hashedPassword) {
+        $sql = "UPDATE Personne SET mdp = :mdp WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([
+            ':mdp' => $hashedPassword,
+            ':id' => $id
+        ]);
+    }
+
+    public function addCapteur($type, $name, $unit) {
+        $stmt = $this->db->prepare("INSERT INTO capteurs (type, name, unit) VALUES (?, ?, ?)");
+        return $stmt->execute([$type, $name, $unit]);
+    }
+
+    public function deleteCapteur($id_sensor) {
+        $stmt = $this->db->prepare("DELETE FROM capteurs WHERE id_sensor = ?");
+        return $stmt->execute([$id_sensor]);
+    }
+    public function addActuator($type, $name, $state) {
+        $sql = "INSERT INTO actuators (type, name, state) VALUES (?, ?, ?)";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([$type, $name, $state]);
+    }
+
+    public function deleteActuator($id) {
+        $sql = "DELETE FROM actuators WHERE id_actuator = ?";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([$id]);
+    }
+
+    public function getDataBySensorId($id_sensor) {
+        $stmt = $this->db->prepare("SELECT value, date FROM data WHERE id_sensor = ? ORDER BY date ASC");
+        $stmt->execute([$id_sensor]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getCapteursWithLimites() {
+        $sql = "SELECT c.*, l.lim_min, l.lim_max 
+            FROM capteurs c
+            LEFT JOIN limites l ON c.id_sensor = l.id_sensor";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function updateLimites($id_sensor, $lim_min, $lim_max) {
+        // Vérifie si une entrée existe déjà
+        $check = $this->db->prepare("SELECT COUNT(*) FROM limites WHERE id_sensor = :id");
+        $check->execute(['id' => $id_sensor]);
+        $exists = $check->fetchColumn();
+
+        if ($exists) {
+            $stmt = $this->db->prepare("UPDATE limites SET lim_min = :min, lim_max = :max WHERE id_sensor = :id");
+        } else {
+            $stmt = $this->db->prepare("INSERT INTO limites (id_sensor, lim_min, lim_max) VALUES (:id, :min, :max)");
+        }
+
+        $stmt->execute([
+            'id' => $id_sensor,
+            'min' => $lim_min,
+            'max' => $lim_max
+        ]);
+    }
+    public function getSensorLimitById($id_sensor) {
+        $req = $this->db->prepare("SELECT lim_max FROM limites WHERE id_sensor = ?");
+        $req->execute([$id_sensor]);
+        return $req->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function updateUserRole($userId, $newRoleName) {
+        // 1. Récupérer l'ID du rôle depuis son nom
+        $stmt = $this->db->prepare("SELECT id FROM Role WHERE nom = :nom");
+        $stmt->execute(['nom' => $newRoleName]);
+        $role = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$role) {
+            return false; // rôle non trouvé
+        }
+
+        $roleId = $role['id'];
+
+        try {
+            $this->db->beginTransaction();
+
+            // 2. Supprimer les rôles actuels de l'utilisateur
+            $stmtDel = $this->db->prepare("DELETE FROM Personne_Role WHERE id_personne = :userId");
+            $stmtDel->execute(['userId' => $userId]);
+
+            // 3. Insérer le nouveau rôle
+            $stmtIns = $this->db->prepare("INSERT INTO Personne_Role (id_personne, id_role) VALUES (:userId, :roleId)");
+            $stmtIns->execute([
+                'userId' => $userId,
+                'roleId' => $roleId
+            ]);
+
+            $this->db->commit();
+            return true;
+        } catch (Exception $e) {
+            $this->db->rollBack();
+            error_log($e->getMessage());
+            return false;
+        }
+    }
+    public function envoyerMessage($id_expediteur, $id_destinataire, $contenu) {
+        $stmt = $this->db->prepare("INSERT INTO Messagerie (id_personne, id_personne_destinataire, message, creer_a) VALUES (:exp, :dest, :msg, NOW())");
+        return $stmt->execute([
+            "exp" => $id_expediteur,
+            "dest" => $id_destinataire,
+            "msg" => $contenu
+        ]);
+    }
+    public function getAdmins() {
+        $sql = "SELECT p.id FROM Personne p
+            JOIN Personne_Role pr ON p.id = pr.id_personne
+            JOIN Role r ON pr.id_role = r.id
+            WHERE r.nom = 'Admin'";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getCapteursAvecDepassement() {
+        $sql = "SELECT * FROM Capteur WHERE valeur > seuil_max";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+
+    public function getDerniereTemperatureInterieure() {
+
+        $logFile = __DIR__ . '/../logs/logs.txt';
+        file_put_contents($logFile, "Début de getDerniereTemperatureInterieure()\n", FILE_APPEND);
+
+        $apiKey = '93cce3bd8a6c4fb25548a56df17d5962';
+        $city = 'Paris,fr';
+
+        $url = "http://api.openweathermap.org/data/2.5/weather?q={$city}&appid={$apiKey}&units=metric";
+
+        file_put_contents($logFile, "URL appelée : $url\n", FILE_APPEND);
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, [
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => 10,
+        ]);
+
+        $response = curl_exec($curl);
+
+        if ($response === false) {
+            file_put_contents($logFile, "Erreur cURL : " . curl_error($curl) . "\n", FILE_APPEND);
+            curl_close($curl);
+            return null;
+        }
+
+        curl_close($curl);
+
+        file_put_contents($logFile, "Réponse API brute : " . $response . "\n", FILE_APPEND);
+
+        $data = json_decode($response, true);
+
+        if ($data === null) {
+            file_put_contents($logFile, "Erreur JSON : " . json_last_error_msg() . "\n", FILE_APPEND);
+            return null;
+        }
+
+        if (!isset($data['main']['temp'])) {
+            file_put_contents($logFile, "Clé 'main.temp' non trouvée dans la réponse\n", FILE_APPEND);
+            return null;
+        }
+
+        file_put_contents($logFile, "Température récupérée : " . $data['main']['temp'] . "\n", FILE_APPEND);
+
+        return floatval($data['main']['temp']);
+    }
+
+
+
+
 }
 ?>
