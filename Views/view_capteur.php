@@ -1,22 +1,26 @@
+<?php
+require_once('Layout/header_horizontal.php');?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8" />
     <title>Accueil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="Content/js/capteur.js" defer></script>
     <link rel="stylesheet" href="Content/css/capteur.css">
 </head>
 <body>
-<h1 class="mb-4 text-center">Dashboard Capteurs</h1>
 
-<div class="container">
-    <!-- Résumé en haut, pleine largeur -->
+<div class="container" >
+
+    <h1 class="mb-4 mt-4 text-center" >Tableau de bord capteurs</h1>
+    <a href="?controller=capteur&action=temperatureTest">Test Température Intérieure</a>
+
     <div class="row mb-4">
         <div class="col-12">
             <div class="card p-3">
-                <!---<h5 class="card-title mb-3">Résumé des dernières mesures</h5>-->
                 <div class="d-flex justify-content-evenly text-center">
                     <div style="min-width: 120px;">
                         <div>Température</div>

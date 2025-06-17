@@ -1,8 +1,5 @@
 
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 class Controller_capteur extends Controller {
 
     public function action_construct() {
@@ -19,12 +16,14 @@ class Controller_capteur extends Controller {
         $luminositeData = $model->getHistoricalDataByType('Luminosité');
         $gazData = $model->getHistoricalDataByType('Gaz');
         $actionneursState = $model->getActuatorsState();
+        $tempInt = $model->getDerniereTemperatureInterieure();
 
         $data = [
             'tempHumData' => $tempHumData,
             'luminositeData' => $luminositeData,
             'gazData' => $gazData,
             'actionneursState' => $actionneursState,
+            'temperatureInterieure' => $tempInt,
             'erreur' => false
         ];
 
@@ -48,5 +47,21 @@ class Controller_capteur extends Controller {
         }
         return $capteurs;
     }
+
+    public function action_temperatureTest() {
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+
+        $model = Model::getModel();
+        $tempInt = $model->getDerniereTemperatureInterieure();
+
+        if ($tempInt === null) {
+            echo "Impossible de récupérer la température intérieure.";
+        } else {
+            echo "Température intérieure : " . $tempInt . " °C";
+        }
+    }
+
 }
 
