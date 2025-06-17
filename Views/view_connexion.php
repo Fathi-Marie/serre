@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="Content/css/con.css"/>
+    <link rel="stylesheet" href="Content/css/connexion.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
@@ -20,6 +20,11 @@
         </div>
 
         <div class="col-12 col-md-7 right-side d-flex flex-column justify-content-center p-5">
+            <?php if (!empty($erreur) && $erreur === true): ?>
+                <div class="alert text-center" role="alert" style="background-color: #212811; color: #82CF11">
+                    E-mail ou mot de passe incorrect.
+                </div>
+            <?php endif; ?>
             <form  action="?controller=connexion&action=seconnecter" method="POST" class="login-form w-100" style="max-width: 400px; margin: auto;">
                 <h2 class="mb-4 text-center">Se connecter</h2>
 

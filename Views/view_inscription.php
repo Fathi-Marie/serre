@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
-    <link rel="stylesheet" href="Content/css/con.css"/>
+    <link rel="stylesheet" href="Content/css/connexion.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script src="Content/js/pageinscription_connexion.js" defer></script>
@@ -21,6 +21,11 @@
             </div>
 
         <div class="col-12 col-md-7 right-side d-flex flex-column justify-content-center p-5">
+            <?php if (!empty($message)): ?>
+                <div class="alert text-center" role="alert" style="background-color: #212811; color: #82CF11">
+                    <?= htmlspecialchars($message) ?>
+                </div>
+            <?php endif; ?>
             <form action="?controller=inscription&action=sinscrire" method="POST" class="login-form w-100" style="max-width: 500px; margin: auto;">
                 <h2 class="mb-4 text-center">Inscription</h2>
 
@@ -61,7 +66,7 @@
                 <!-- Email -->
                 <div class="mb-3 input-group">
                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                    <input type="email" class="form-control" id="mail" name="mail" placeholder="Votre adresse mail étudiant" required>
+                    <input type="email" class="form-control" id="mail" name="mail" placeholder="Votre adresse mail " required>
                 </div>
 
                 <!-- Mot de passe -->

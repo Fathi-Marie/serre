@@ -13,23 +13,18 @@ class Controller_connexion extends Controller {
         $model = Model::getModel(); 
         $email = $_POST['email']; 
         $mdp = $_POST['password']; 
-        $personne = $model->personneConnexion($email); 
+        $personne = $model->personneConnexion($email);
 
         if  ($personne && password_verify($mdp, $personne['mdp'])) { 
-            $idpersonne= $personne['id']; 
+            $idpersonne= $personne['id'];
             session_start();
-            $_SESSION['idpersonne'] = $idpersonne; 
-            $_SESSION['prenom'] = $personne['prénom'];
-            $data = ["erreur" => false]; 
-
-//            if ($model->hasRole($idpersonne, 'Admin')) {
-//                header('Location: ?controller=admin&action=admin');
-//                return;
-//            }
-//            if ($model->hasRole($idpersonne, 'Propriétaire')) {
-//                header('Location: ?controller=acceuil&action=acceuil');
-//                return;
-//            }
+            $_SESSION['user'] = [
+                'id' => $personne['id'],
+                'prenom' => $personne['prénom'],
+                'nom' => $personne['nom'],
+                'email' => $personne['email'],
+                'role' => $personne['role']
+            ];
 
             header('Location: ?controller=capteur&action=?dashboardController');
         } 
