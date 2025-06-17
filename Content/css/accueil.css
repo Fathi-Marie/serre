@@ -2,26 +2,37 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    background-color: #212811;
 }
 
 .part1 {
     height: 400px;
-    background-image: url('../Images/Accueil/fond.jpg');
+    background-image: url('../Images/serre.png');
     background-size: cover;
     background-position: center;
     color: white;
     padding: 100px 20px;
     padding-left: 5%;
+    background-color: #212811;
+}
+
+.part1::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: -1;
 }
 
 .part1 h1 {
     color: white;
     font-size: 3em;
+    text-transform: uppercase;
 }
 
 .part1 button {
-    background-color: #a9ca59;
-    color: #23435c;
+    background-color: #212811;
+    color: #a9ca59;
     text-transform: uppercase;
     font-weight: bold;
     padding: 17px 25px;
@@ -188,24 +199,24 @@ body {
 
 @media (max-width: 930px) {
     .part2 .row {
-        flex-wrap: wrap; /* Permet de placer les éléments sur plusieurs lignes */
+        flex-wrap: wrap;
         justify-content: center;
     }
 
     .part2 .element {
-        flex: 1 1 100%; /* Les éléments prennent toute la largeur */
-        max-width: 100%; /* Maximum à 100% */
-        flex-direction: column; /* Empile les contenus verticalement */
-        align-items: center; /* Centre les contenus de chaque élément */
-        text-align: center; /* Centre le texte */
+        flex: 1 1 100%;
+        max-width: 100%;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
     .part2 img {
-        margin-bottom: 10px; /* Ajoute un espace entre l'image et le texte */
+        margin-bottom: 10px;
     }
 
     .part2 h3 {
-        margin-left: 0; /* Supprime le décalage gauche */
+        margin-left: 0;
     }
 
     .part1 h1 {

@@ -9,8 +9,8 @@ require_once('Layout/view_header.php');?>
 </head>
     <!-- Section principale -->
     <div class="part1">
-        <h1>Trouve Ton Logement<br>Étudiant Aujourd'hui !</h1>
-        /<a href="?controller=pagelogement&action=pagelogementController"><button>Recherche un logement</button></a>
+        <h1>éclosia<br>l'art de faire éclore le vivant</h1>
+        <a href="?controller=connexion&action=connexionController"><button>Ouvrir mon compte</button></a>
     </div>
 
     <!-- Section fonctionnalités -->
@@ -18,19 +18,19 @@ require_once('Layout/view_header.php');?>
         <div class="row">
             <div class="element">
                 <img src="Content/Images/Accueil/globe.png" alt="Image 1">
-                <h3>Disponible en plusieurs langues</h3>
+                <h3>Capteur de température</h3>
             </div>
             <div class="element">
                 <img src="Content/Images/Accueil/demenage.png" alt="Image 2">
-                <h3>Services de déménagement</h3>
+                <h3>Capteur de Gaz</h3>
             </div>
             <div class="element">
                 <img src="Content/Images/Accueil/charges.png" alt="Image 3">
-                <h3>Comparateur de charges</h3>
+                <h3>Capteur de luminosité</h3>
             </div>
             <div class="element">
                 <img src="Content/Images/Accueil/bourse.png" alt="Image 4">
-                <h3>Éligibilité aux bourses / aides</h3>
+                <h3>Actionneurs</h3>
             </div>
 
         </div>
