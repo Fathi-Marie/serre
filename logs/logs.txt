@@ -1,0 +1,180 @@
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=ed57f9a77d820bf69a3f277f85fb6f43&units=metric
+Réponse API brute : {"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}
+Clé 'main.temp' non trouvée dans la réponse
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=ed57f9a77d820bf69a3f277f85fb6f43&units=metric
+Réponse API brute : {"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}
+Clé 'main.temp' non trouvée dans la réponse
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}
+Clé 'main.temp' non trouvée dans la réponse
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}
+Clé 'main.temp' non trouvée dans la réponse
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}
+Clé 'main.temp' non trouvée dans la réponse
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}
+Clé 'main.temp' non trouvée dans la réponse
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}
+Clé 'main.temp' non trouvée dans la réponse
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}
+Clé 'main.temp' non trouvée dans la réponse
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}
+Clé 'main.temp' non trouvée dans la réponse
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}
+Clé 'main.temp' non trouvée dans la réponse
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}
+Clé 'main.temp' non trouvée dans la réponse
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}
+Clé 'main.temp' non trouvée dans la réponse
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}
+Clé 'main.temp' non trouvée dans la réponse
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}
+Clé 'main.temp' non trouvée dans la réponse
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}
+Clé 'main.temp' non trouvée dans la réponse
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}
+Clé 'main.temp' non trouvée dans la réponse
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}
+Clé 'main.temp' non trouvée dans la réponse
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}
+Clé 'main.temp' non trouvée dans la réponse
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}
+Clé 'main.temp' non trouvée dans la réponse
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}
+Clé 'main.temp' non trouvée dans la réponse
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"iclass controllerd":800,"main":"Clear","description":"clear sky","icon":"01n"}],"base":"stations","main":{"temp":17.34,"feels_like":17.06,"temp_min":16.32,"temp_max":18.43,"pressure":1027,"humidity":74,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.03,"deg":20},"clouds":{"all":0},"dt":1750118443,"sys":{"type":1,"id":6548,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.34
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":800,"main":"Clear","description":"clear sky","icon":"01n"}],"base":"stations","main":{"temp":17.34,"feels_like":17.06,"temp_min":16.32,"temp_max":18.43,"pressure":1027,"humidity":74,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.03,"deg":20},"clouds":{"all":0},"dt":1750118443,"sys":{"type":1,"id":6548,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.34
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":800,"main":"Clear","description":"clear sky","icon":"01n"}],"base":"stations","main":{"temp":17.34,"feels_like":17.06,"temp_min":16.32,"temp_max":18.43,"pressure":1027,"humidity":74,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.03,"deg":20},"clouds":{"all":0},"dt":1750118443,"sys":{"type":1,"id":6548,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.34
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":800,"main":"Clear","description":"clear sky","icon":"01n"}],"base":"stations","main":{"temp":17.34,"feels_like":17.06,"temp_min":16.32,"temp_max":18.43,"pressure":1027,"humidity":74,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.03,"deg":20},"clouds":{"all":0},"dt":1750118443,"sys":{"type":1,"id":6548,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.34
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":800,"main":"Clear","description":"clear sky","icon":"01n"}],"base":"stations","main":{"temp":17.16,"feels_like":16.89,"temp_min":15.6,"temp_max":18.43,"pressure":1027,"humidity":75,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.03,"deg":20},"clouds":{"all":0},"dt":1750118592,"sys":{"type":1,"id":6548,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.16
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":800,"main":"Clear","description":"clear sky","icon":"01n"}],"base":"stations","main":{"temp":17.16,"feels_like":16.89,"temp_min":15.6,"temp_max":18.43,"pressure":1027,"humidity":75,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.03,"deg":20},"clouds":{"all":0},"dt":1750118592,"sys":{"type":1,"id":6548,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.16
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":800,"main":"Clear","description":"clear sky","icon":"01n"}],"base":"stations","main":{"temp":17.16,"feels_like":16.89,"temp_min":15.6,"temp_max":18.43,"pressure":1027,"humidity":75,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.03,"deg":20},"clouds":{"all":0},"dt":1750118592,"sys":{"type":1,"id":6548,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.16
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":800,"main":"Clear","description":"clear sky","icon":"01n"}],"base":"stations","main":{"temp":17.16,"feels_like":16.89,"temp_min":15.6,"temp_max":18.43,"pressure":1027,"humidity":75,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.03,"deg":20},"clouds":{"all":0},"dt":1750118592,"sys":{"type":1,"id":6548,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.16
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04n"}],"base":"stations","main":{"temp":17.09,"feels_like":16.94,"temp_min":15.6,"temp_max":17.92,"pressure":1027,"humidity":80,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.13,"deg":57,"gust":1.94},"clouds":{"all":56},"dt":1750118884,"sys":{"type":2,"id":66795,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.09
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04n"}],"base":"stations","main":{"temp":17.09,"feels_like":16.94,"temp_min":15.6,"temp_max":17.92,"pressure":1027,"humidity":80,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.13,"deg":57,"gust":1.94},"clouds":{"all":56},"dt":1750118884,"sys":{"type":2,"id":66795,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.09
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04n"}],"base":"stations","main":{"temp":17.09,"feels_like":16.94,"temp_min":15.6,"temp_max":17.92,"pressure":1027,"humidity":80,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.13,"deg":57,"gust":1.94},"clouds":{"all":56},"dt":1750118884,"sys":{"type":2,"id":66795,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.09
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04n"}],"base":"stations","main":{"temp":17.09,"feels_like":16.94,"temp_min":15.6,"temp_max":17.92,"pressure":1027,"humidity":80,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.13,"deg":57,"gust":1.94},"clouds":{"all":56},"dt":1750118884,"sys":{"type":2,"id":66795,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.09
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04n"}],"base":"stations","main":{"temp":17.09,"feels_like":16.94,"temp_min":15.6,"temp_max":17.92,"pressure":1027,"humidity":80,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.13,"deg":57,"gust":1.94},"clouds":{"all":56},"dt":1750118884,"sys":{"type":2,"id":66795,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.09
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04n"}],"base":"stations","main":{"temp":17.09,"feels_like":16.94,"temp_min":15.6,"temp_max":17.92,"pressure":1027,"humidity":80,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.13,"deg":57,"gust":1.94},"clouds":{"all":56},"dt":1750118884,"sys":{"type":2,"id":66795,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.09
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04n"}],"base":"stations","main":{"temp":17.09,"feels_like":16.94,"temp_min":15.6,"temp_max":17.92,"pressure":1027,"humidity":80,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.13,"deg":57,"gust":1.94},"clouds":{"all":56},"dt":1750118884,"sys":{"type":2,"id":66795,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.09
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04n"}],"base":"stations","main":{"temp":17.09,"feels_like":16.94,"temp_min":15.6,"temp_max":17.92,"pressure":1027,"humidity":80,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.13,"deg":57,"gust":1.94},"clouds":{"all":56},"dt":1750118884,"sys":{"type":2,"id":66795,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.09
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04n"}],"base":"stations","main":{"temp":17.09,"feels_like":16.94,"temp_min":15.6,"temp_max":17.92,"pressure":1027,"humidity":80,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.13,"deg":57,"gust":1.94},"clouds":{"all":56},"dt":1750118884,"sys":{"type":2,"id":66795,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.09
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04n"}],"base":"stations","main":{"temp":17.09,"feels_like":16.94,"temp_min":15.6,"temp_max":17.92,"pressure":1027,"humidity":80,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.13,"deg":57,"gust":1.94},"clouds":{"all":56},"dt":1750118884,"sys":{"type":2,"id":66795,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.09
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04n"}],"base":"stations","main":{"temp":17.09,"feels_like":16.94,"temp_min":15.6,"temp_max":17.92,"pressure":1027,"humidity":80,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.13,"deg":57,"gust":1.94},"clouds":{"all":56},"dt":1750119008,"sys":{"type":2,"id":66795,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.09
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04n"}],"base":"stations","main":{"temp":17.09,"feels_like":16.94,"temp_min":15.6,"temp_max":17.92,"pressure":1027,"humidity":80,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.13,"deg":57,"gust":1.94},"clouds":{"all":56},"dt":1750119008,"sys":{"type":2,"id":66795,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.09
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04n"}],"base":"stations","main":{"temp":17.09,"feels_like":16.94,"temp_min":15.6,"temp_max":17.92,"pressure":1027,"humidity":80,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.13,"deg":57,"gust":1.94},"clouds":{"all":56},"dt":1750119008,"sys":{"type":2,"id":66795,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.09
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04n"}],"base":"stations","main":{"temp":17.09,"feels_like":16.94,"temp_min":15.6,"temp_max":17.92,"pressure":1027,"humidity":80,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":1.13,"deg":57,"gust":1.94},"clouds":{"all":56},"dt":1750119187,"sys":{"type":2,"id":66795,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 17.09
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":800,"main":"Clear","description":"clear sky","icon":"01n"}],"base":"stations","main":{"temp":18.05,"feels_like":17.79,"temp_min":15.6,"temp_max":18.97,"pressure":1027,"humidity":72,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":2.57,"deg":350},"clouds":{"all":0},"dt":1750119600,"sys":{"type":2,"id":2012208,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 18.05
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":800,"main":"Clear","description":"clear sky","icon":"01n"}],"base":"stations","main":{"temp":18.05,"feels_like":17.79,"temp_min":15.6,"temp_max":18.97,"pressure":1027,"humidity":72,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":2.57,"deg":350},"clouds":{"all":0},"dt":1750119600,"sys":{"type":2,"id":2012208,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 18.05
+Début de getDerniereTemperatureInterieure()
+URL appelée : http://api.openweathermap.org/data/2.5/weather?q=Paris,fr&appid=93cce3bd8a6c4fb25548a56df17d5962&units=metric
+Réponse API brute : {"coord":{"lon":2.3488,"lat":48.8534},"weather":[{"id":800,"main":"Clear","description":"clear sky","icon":"01n"}],"base":"stations","main":{"temp":18.05,"feels_like":17.79,"temp_min":15.6,"temp_max":18.97,"pressure":1027,"humidity":72,"sea_level":1027,"grnd_level":1017},"visibility":10000,"wind":{"speed":2.57,"deg":350},"clouds":{"all":0},"dt":1750119600,"sys":{"type":2,"id":2012208,"country":"FR","sunrise":1750131992,"sunset":1750190195},"timezone":7200,"id":2988507,"name":"Paris","cod":200}
+Température récupérée : 18.05
