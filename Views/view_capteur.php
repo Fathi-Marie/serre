@@ -16,12 +16,14 @@ require_once('Layout/header_horizontal.php');?>
 <div class="container" >
 
     <h1 class="mb-4 mt-4 text-center" >Tableau de bord capteurs</h1>
-    <a href="?controller=capteur&action=temperatureTest">Test Température Intérieure</a>
-
     <div class="row mb-4">
         <div class="col-12">
             <div class="card p-3">
                 <div class="d-flex justify-content-evenly text-center">
+                    <div style="min-width: 120px;">
+                        <div>Température à Paris</div>
+                        <h3 id="parisTemp" class="valeur_resum"> <?php echo $temperatureInterieure?> °C</h3>
+                    </div>
                     <div style="min-width: 120px;">
                         <div>Température</div>
                         <h3 id="resumeTemp" class="valeur_resum">-- °C</h3>
