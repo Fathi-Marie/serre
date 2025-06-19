@@ -22,6 +22,13 @@ class Controller_capteur extends Controller {
         $actionneursState = $model->getActionneursState();
         $tempInterieure = $model->getDerniereTemperatureInterieure();
 
+        $temp = $model->getLastValueByCapteur(2);
+        $glum = $model->getLastValueByCapteur(1);
+        $hum = $model->getLastValueByCapteur(3);
+        $hum_sol = $model->getLastValueByCapteur(5);
+
+        $actionneurs = $model->getAllActionneursWithCurrentState();
+
         $data = [
             'tempHumData' => $tempHumData,
             'luminositeData' => $luminositeData,
@@ -29,6 +36,11 @@ class Controller_capteur extends Controller {
             'humidite_sol' => $humidite_sol,
             'actionneursState' => $actionneursState,
             'temperatureInterieure' => $tempInterieure,
+            'temp' => $temp,
+            'lum' => $glum,
+            'hum' => $hum,
+            'hum_sol' => $hum_sol,
+            'actionneurs' => $actionneurs,
             'erreur' => false
         ];
 

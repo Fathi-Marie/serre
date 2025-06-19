@@ -11,7 +11,7 @@ class Controller_admindash extends Controller {
     public function action_admindash() {
         $model = Model::getModel();
         $capteurs = $model->getCapteursWithLimites();
-        $actionneurs = $model->selectAllFromTable('actuators');
+        $actionneurs = $model->getAllActionneursWithCurrentState();
         $data = ["erreur" => false,
             "actionneurs" => $actionneurs,
             "capteurs" => $capteurs];
@@ -21,12 +21,11 @@ class Controller_admindash extends Controller {
 
     public function action_add() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $type = $_POST['type'] ?? '';
-            $name = $_POST['name'] ?? '';
-            $unit = $_POST['unit'] ?? '';
-
+            $nom = $_POST['nom'] ?? '';
+            $unite = $_POST['unite'] ?? '';
+            $is_actif = (int)$_POST['is_actif'];
             $model = Model::getModel();
-            $model->addCapteur($type, $name, $unit);
+            $model->addCapteur($nom, $unite, $is_actif);
         }
 
         header("Location: ?controller=admindash&action=admindash");
@@ -34,8 +33,8 @@ class Controller_admindash extends Controller {
     }
 
     public function action_delete() {
-        if (isset($_GET['id_sensor'])) {
-            $id = intval($_GET['id_sensor']);
+        if (isset($_GET['id'])) {
+            $id = intval($_GET['id']);
             $model = Model::getModel();
             $model->deleteCapteur($id);
         }
@@ -47,20 +46,20 @@ class Controller_admindash extends Controller {
     public function action_add_actuator() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $type = $_POST['type'] ?? '';
-            $name = $_POST['name'] ?? '';
-            $state = $_POST['state'] ?? '';
+            $etat = isset($_POST['etat']) ? (int)$_POST['etat'] : 0;
 
             $model = Model::getModel();
-            $model->addActuator($type, $name, $state);
+            $model->addActuator($type, $etat);
         }
 
         header("Location: ?controller=admindash&action=admindash");
         exit;
     }
 
+
     public function action_delete_actuator() {
-        if (isset($_GET['id_actuator'])) {
-            $id = intval($_GET['id_actuator']);
+        if (isset($_GET['id'])) {
+            $id = intval($_GET['id']);
             $model = Model::getModel();
             $model->deleteActuator($id);
         }
@@ -72,24 +71,25 @@ class Controller_admindash extends Controller {
     public function action_get_graph_data() {
         header('Content-Type: application/json');
 
-        if (!isset($_GET['id_sensor'])) {
+        if (!isset($_GET['id'])) {
             echo json_encode(['error' => 'ID du capteur manquant']);
             exit;
         }
 
-        $id_sensor = (int)$_GET['id_sensor'];
+        $capteurId = (int)$_GET['id'];
 
         $model = Model::getModel();
-        $donnees = $model->getDataBySensorId($id_sensor);
-        $limites = $model->getSensorLimitById($id_sensor);
+
+        $donnees = $model->getMesuresByCapteurId($capteurId);
+        $limites = $model->getSensorLimitById($capteurId);
 
         if (!$donnees || count($donnees) === 0) {
-            echo json_encode(['labels' => [], 'values' => [], 'lim_max' => null]);
+            echo json_encode(['labels' => [], 'values' => [], 'lim_max' => $limites['lim_max'] ?? null]);
             exit;
         }
 
-        $labels = array_column($donnees, 'date');
-        $values = array_column($donnees, 'value');
+        $labels = array_column($donnees, 'date_heure');
+        $values = array_map('floatval', array_column($donnees, 'valeur'));
 
         echo json_encode([
             'labels' => $labels,
@@ -100,9 +100,10 @@ class Controller_admindash extends Controller {
     }
 
 
+
     public function action_updateLimites() {
         $model = Model::getModel();
-        $id_sensor = $_POST['id_sensor'];
+        $id_sensor = $_POST['id'];
         $lim_min = $_POST['lim_min'] !== '' ? $_POST['lim_min'] : null;
         $lim_max = $_POST['lim_max'] !== '' ? $_POST['lim_max'] : null;
 
@@ -110,6 +111,38 @@ class Controller_admindash extends Controller {
         header('Location: ?controller=admindash&action=admindash');
         exit;
     }
+
+    public function action_getSensorData() {
+        $id = $_GET['id'] ?? null;
+        if (!$id) {
+            http_response_code(400);
+            echo json_encode(['error' => 'ID manquant']);
+            exit;
+        }
+
+        $model = Model::getModel();
+
+        // Exemple : récupérer les données du capteur (date, valeur)
+        $dataPoints = $model->getCapteurDataById($id);  // À créer : doit renvoyer tableau de ['date_heure', 'valeur']
+
+        $capteurInfo = $model->getCapteurById($id); // pour récupérer lim_max
+
+        $labels = [];
+        $values = [];
+        foreach ($dataPoints as $point) {
+            $labels[] = $point['date_heure'];
+            $values[] = (float)$point['valeur'];
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode([
+            'labels' => $labels,
+            'values' => $values,
+            'lim_max' => (float)$capteurInfo['lim_max']
+        ]);
+        exit;
+    }
+
 
 }
 

@@ -98,8 +98,7 @@ class Controller_inscription extends Controller {
                 session_start();
                 $_SESSION['idpersonne'] = $model->getIdPersonne($email);
                 $_SESSION['prenom'] = $prenom;
-                $data = ["message" => null];
-                $this->render("capteur", $data);
+                header('Location: ?controller=capteur&action=dashboardController');
             } else {
                 echo "Erreur lors de l'inscription.";
             }

@@ -26,15 +26,22 @@ require_once('Layout/header_horizontal.php');?>
                     </div>
                     <div style="min-width: 120px;">
                         <div>Température</div>
-                        <h3 id="resumeTemp" class="valeur_resum">-- °C</h3>
+                        <h3 id="resumeTemp" class="valeur_resum">  <?= isset($temp) ? htmlspecialchars($temp) . " °C" : "-- °C" ?>
+                        </h3>
                     </div>
                     <div style="min-width: 120px;">
-                        <div>Gaz</div>
-                        <h3 id="resumeGaz" class="valeur_resum">-- ppm</h3>
+                        <div>Luminosite</div>
+                        <h3 id="resumeGaz" class="valeur_resum">  <?= isset($lum) ? htmlspecialchars($lum) . " %" : "-- %" ?></h3>
                     </div>
                     <div style="min-width: 120px;">
-                        <div>Luminosité</div>
-                        <h3 id="resumeLum" class="valeur_resum">-- lux</h3>
+                        <div>Humidite</div>
+                        <h3 id="resumeLum" class="valeur_resum">  <?= isset($hum) ? htmlspecialchars($hum) . " %" : "-- %" ?>
+                        </h3>
+                    </div>
+                    <div style="min-width: 120px;">
+                        <div>Humidite Sol</div>
+                        <h3 id="resumeLum" class="valeur_resum">  <?= isset($hum_sol) ? htmlspecialchars($hum_sol) . " %" : "-- %" ?>
+                        </h3>
                     </div>
                 </div>
             </div>
@@ -46,21 +53,33 @@ require_once('Layout/header_horizontal.php');?>
         <div class="col-md-8">
             <div class="card p-3 card-graph">
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h5 class="card-title mb-0">Température / Humidité</h5>
-                    <button class="btn voirPlus btn-sm" data-bs-toggle="modal" data-bs-target="#modalTempHum">
-                        Voir plus
-                    </button>
+                    <h5 class="card-title mb-0">Température</h5>
+                    <button class="btn voirPlus btn-sm" data-id="2" data-nom="Température">Voir plus</button>
                 </div>
                 <canvas id="tempHumChart" style="width: 100%; height: 300px;"></canvas>
             </div>
         </div>
 
-        <div class="col-md-4" >
+        <div class="col-md-4">
             <div id="actionneursContainer" class="card p-3" style="height:380px">
                 <h5 class="card-title">Actionneurs (état actuel)</h5>
-                <ul id="actionneursList" class="list-group list-group-flush mt-3"></ul>
+                <ul id="actionneursList" class="list-group list-group-flush mt-3">
+                    <?php if (!empty($actionneurs)) : ?>
+                        <?php foreach ($actionneurs as $act) : ?>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <?= htmlspecialchars($act['name']) ?>
+                                <span class="badge bg-<?= $act['state'] ? 'success' : 'secondary' ?>">
+                            <?= $act['state'] ? 'Activé' : 'Désactivé' ?>
+                        </span>
+                            </li>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <li class="list-group-item">Aucun actionneur trouvé.</li>
+                    <?php endif; ?>
+                </ul>
             </div>
         </div>
+
     </div>
 
     <!-- Deux autres graphiques côte à côte -->
@@ -69,7 +88,7 @@ require_once('Layout/header_horizontal.php');?>
             <div class="card p-3 card-graph">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h5 class="card-title mb-0">Luminosité</h5>
-                    <button class="btn voirPlus btn-sm" data-bs-toggle="modal" data-bs-target="#modalLuminosite">
+                    <button class="btn voirPlusLum btn-sm" data-bs-toggle="modal" data-bs-target="#modalLuminosite" data-id="1" data-nom="Luminosité">
                         Voir plus
                     </button>
                 </div>
@@ -79,98 +98,77 @@ require_once('Layout/header_horizontal.php');?>
         <div class="col-md-6">
             <div class="card p-3 card-graph">
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h5 class="card-title mb-0">Concentration de gaz</h5>
-                    <button class="btn voirPlus btn-sm" data-bs-toggle="modal" data-bs-target="#modalGaz">
+                    <h5 class="card-title mb-0">Humidité (sol & air)</h5>
+                    <button class="btn voirPlus btn-sm" data-bs-toggle="modal" data-bs-target="#modalHumidite" data-id="3">
                         Voir plus
                     </button>
                 </div>
                 <canvas id="humiditeSolChart" style="height: 250px; width: 100%;"></canvas>
             </div>
         </div>
+
     </div>
-</div>
 
-
-<!-- Modal TempHum -->
-<div class="modal fade" id="modalTempHum" tabindex="-1" aria-labelledby="modalTempHumLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered">
-        <div class="modal-content" style="height: 750px;">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalTempHumLabel">Température / Humidité - Vue étendue</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
-            </div>
-            <div class="modal-body" style="height: 10%;">
-                <select id="tempHumPeriod" class="form-select mb-3" style="width: 150px;">
-                    <option value="day" selected>Jour</option>
-                    <option value="week">Semaine</option>
-                    <option value="month">Mois</option>
-                </select>
-                <canvas id="humiditeSolChart" style="height: 250px; width: 100%;"></canvas>
+    <div class="modal fade" id="graphModal" tabindex="-1" aria-labelledby="graphModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="graphModalLabel">Graphique</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                </div>
+                <div class="modal-body">
+                    <canvas id="capteurChart" width="800" height="400"></canvas>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<!-- Modal Luminosité -->
-<div class="modal fade" id="modalLuminosite" tabindex="-1" aria-labelledby="modalLuminositeLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalLuminositeLabel">Luminosité - Vue étendue</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
-            </div>
-            <div class="modal-body" >
-                <select id="lumPeriod" class="form-select mb-3" style="width: 150px;">
-                    <option value="day" selected>Jour</option>
-                    <option value="week">Semaine</option>
-                    <option value="month">Mois</option>
-                </select>
-                <canvas id="luminositeChartLarge" style="height: 400px; width: 100%;"></canvas>
+    <div class="modal fade" id="modalLuminosite" tabindex="-1" aria-labelledby="modalLuminositeLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLuminositeLabel">Graphique Luminosité</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                </div>
+                <div class="modal-body">
+                    <canvas id="luminositeModalChart" style="height: 300px; width: 100%;"></canvas>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Modal Gaz -->
-<div class="modal fade" id="modalGaz" tabindex="-1" aria-labelledby="modalGazLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered">
-        <div class="modal-content" style="height: 750px;">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalGazLabel">Gaz - Vue étendue</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
-            </div>
-            <div class="modal-body">
-                <select id="gazPeriod" class="form-select mb-3" style="width: 150px;">
-                    <option value="day" selected>Jour</option>
-                    <option value="week">Semaine</option>
-                    <option value="month">Mois</option>
-                </select>
-                <canvas id="gazChartLarge" style="height: 400px; width: 100%;"></canvas>
+
+    <div class="modal fade" id="modalHumidite" tabindex="-1" aria-labelledby="modalHumiditeLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalHumiditeLabel">Graphique Humidité (sol & air)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                </div>
+                <div class="modal-body">
+                    <canvas id="humiditeModalChart" style="height: 300px; width: 100%;"></canvas>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<script>
-    const gazData = <?= json_encode($gazData) ?>;
-    const actionneursState = <?= json_encode($actionneursState) ?>;
-</script>
 
-<script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
     // Injection PHP des données
     const tempHumData = <?= json_encode($tempHumData) ?>;
 
-    // Extraction des labels (dates) et des valeurs
-    const labels = tempHumData.map(item => {const date = new Date(item.date_heure);
+    const labels = tempHumData.map(item => {
+        const date = new Date(item.date_heure);
         const hours = date.getHours().toString().padStart(2, '0');
         const minutes = date.getMinutes().toString().padStart(2, '0');
         return `${hours}:${minutes}`;
     });
     const dataValues = tempHumData.map(item => item.valeur);
 
-    // Récupération du contexte canvas
     const ctx = document.getElementById('tempHumChart').getContext('2d');
 
-    // Création du graphique Chart.js
     const tempHumChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -178,8 +176,8 @@ require_once('Layout/header_horizontal.php');?>
             datasets: [{
                 label: 'Température (°C)',
                 data: dataValues,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: '#768D3E',
+                backgroundColor: 'rgba(0, 0, 0, 0.1)',
                 fill: true,
                 tension: 0.3
             }]
@@ -205,30 +203,90 @@ require_once('Layout/header_horizontal.php');?>
         }
     });
 
+    document.addEventListener('DOMContentLoaded', () => {
+        const modalElement = document.getElementById('graphModal');
+        const modalInstance = new bootstrap.Modal(modalElement);
+        const ctxModal = document.getElementById('capteurChart').getContext('2d');
+        let modalChart = null;
+        const labels = tempHumData.map(item => {
+            const date = new Date(item.date_heure);
+            const hours = date.getHours().toString().padStart(2, '0');
+            const minutes = date.getMinutes().toString().padStart(2, '0');
+            return `${hours}:${minutes}`;
+        });
 
+        const graphsData = {
+            "2": {
+                labels: labels,
+                values: dataValues
+            }
+        };
+
+        function drawModalChart(id, nom) {
+            const data = graphsData[id];
+            if (!data) {
+                alert('Données du graphique introuvables.');
+                return;
+            }
+
+            if (modalChart) modalChart.destroy();
+
+            modalChart = new Chart(ctxModal, {
+                type: 'line',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: nom,
+                        data: data.values,
+                        borderColor: '#212811',
+                        backgroundColor: 'rgba(169, 202, 89, 0.5)',
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: { title: { display: true, text: 'Heure' } },
+                        y: { title: { display: true, text: 'Valeur' } }
+                    }
+                }
+            });
+        }
+
+        document.querySelectorAll('.voirPlus').forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.dataset.id;
+                const nom = button.dataset.nom || button.closest('.card').querySelector('h5').textContent;
+                drawModalChart(id, nom);
+                modalInstance.show();
+            });
+        });
+    });
+
+    //luminosite
     // Injection PHP des données luminosité
     const luminositeData = <?= json_encode($luminositeData) ?>;
 
-    // Extraction des labels (dates) et des valeurs
-    const labelsLum = luminositeData.map(item => {const date = new Date(item.date_heure);
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-    return `${hours}:${minutes}`;
+    // Préparation des labels et valeurs pour le graphique principal
+    const labelsLum = luminositeData.map(item => {
+        const date = new Date(item.date_heure);
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        return `${hours}:${minutes}`;
     });
     const dataLumValues = luminositeData.map(item => item.valeur);
 
-    // Récupération du contexte canvas
+    // Graphique principal luminosité
     const ctxLum = document.getElementById('luminositeChart').getContext('2d');
-
-    // Création du graphique Chart.js pour la luminosité
     const luminositeChart = new Chart(ctxLum, {
         type: 'line',
         data: {
             labels: labelsLum,
             datasets: [{
-                label: 'Luminosité (lux)',
+                label: 'Luminosité (%)',
                 data: dataLumValues,
-                borderColor: 'rgba(255, 206, 86, 1)',
+                borderColor: '#A9CA59',
                 backgroundColor: 'rgba(255, 206, 86, 0.2)',
                 fill: true,
                 tension: 0.3
@@ -239,73 +297,188 @@ require_once('Layout/header_horizontal.php');?>
             scales: {
                 x: {
                     type: 'category',
-                    title: {
-                        display: true,
-                        text: 'Date / Heure'
-                    }
+                    title: { display: true, text: 'Date / Heure' }
                 },
                 y: {
-                    title: {
-                        display: true,
-                        text: 'Luminosité (lux)'
-                    },
+                    title: { display: true, text: 'Luminosité (%)' },
                     beginAtZero: true
                 }
             }
         }
     });
 
+    document.addEventListener('DOMContentLoaded', () => {
+        const modalElement = document.getElementById('modalLuminosite');
+        const modalInstance = new bootstrap.Modal(modalElement);
+        const ctxModalLum = document.getElementById('luminositeModalChart').getContext('2d');
+        let modalLumChart = null;
+
+        // Structure des données pour le modal (similaire à celle du principal)
+        const graphsLumData = {
+            "1": {
+                labels: labelsLum,
+                values: dataLumValues
+            }
+            // Ajoute d'autres id si besoin
+        };
+
+        function drawModalLumChart(id, nom) {
+            const data = graphsLumData[id];
+            if (!data) {
+                alert('Données du graphique introuvables.');
+                return;
+            }
+
+            if (modalLumChart) modalLumChart.destroy();
+
+            modalLumChart = new Chart(ctxModalLum, {
+                type: 'line',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: nom,
+                        data: data.values,
+                        borderColor: '#212811',
+                        backgroundColor: 'rgba(169, 202, 89, 0.5)',
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: { title: { display: true, text: 'Heure' } },
+                        y: { title: { display: true, text: 'Valeur' } }
+                    }
+                }
+            });
+        }
+
+        document.querySelectorAll('.voirPlusLum').forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.dataset.id;
+                const nom = button.dataset.nom || button.closest('.card').querySelector('h5').textContent;
+                drawModalLumChart(id, nom);
+                modalInstance.show();
+            });
+        });
+    });
+
+
+    //humidite
+    const humiditeData = <?= json_encode($humidite) ?>;
     const humiditeSolData = <?= json_encode($humidite_sol) ?>;
 
-    // Préparation labels et valeurs
-    const labelsHumiditeSol = humiditeSolData.map(item => {
+    const labelsHumidite = humiditeSolData.map(item => {
         const date = new Date(item.date_heure);
-        const hours = date.getHours().toString().padStart(2, '0');
-        const minutes = date.getMinutes().toString().padStart(2, '0');
-        return `${hours}:${minutes}`;
+        return `${date.getHours().toString().padStart(2,'0')}:${date.getMinutes().toString().padStart(2,'0')}`;
     });
-    const dataValuesHumiditeSol = humiditeSolData.map(item => item.valeur);
+    const valeursSol = humiditeSolData.map(item => item.valeur);
+    const valeursHum = humiditeData.map(item => item.valeur);
 
-    // Récupération du contexte canvas
-    const ctxHumiditeSol = document.getElementById('humiditeSolChart').getContext('2d');
+    const ctxHumidite = document.getElementById('humiditeSolChart').getContext('2d');
 
-    // Création du graphique Chart.js
-    const humiditeSolChart = new Chart(ctxHumiditeSol, {
+    const humiditeChart = new Chart(ctxHumidite, {
         type: 'line',
         data: {
-            labels: labelsHumiditeSol,
-            datasets: [{
-                label: 'Humidité du sol (%)',
-                data: dataValuesHumiditeSol,
-                borderColor: 'rgba(54, 162, 235, 1)',
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                fill: true,
-                tension: 0.3
-            }]
+            labels: labelsHumidite,
+            datasets: [
+                {
+                    label: 'Humidité du sol (%)',
+                    data: valeursSol,
+                    borderColor: '#768D3E',
+                    backgroundColor: 'rgba(169, 202, 89, 0.2)',
+                    fill: true,
+                    tension: 0.3
+                },
+                {
+                    label: 'Humidité (%)',
+                    data: valeursHum,
+                    borderColor: '#A9CA59',
+                    backgroundColor: 'rgba(118, 141, 62, 0.2)',
+                    fill: true,
+                    tension: 0.3
+                }
+            ]
         },
         options: {
             responsive: true,
             scales: {
-                x: {
-                    type: 'category',
-                    title: {
-                        display: true,
-                        text: 'Date / Heure'
-                    }
-                },
-                y: {
-                    beginAtZero: true,
-                    max: 100,
-                    title: {
-                        display: true,
-                        text: 'Humidité du sol (%)'
-                    }
-                }
+                x: { type: 'category', title: { display: true, text: 'Date / Heure' }},
+                y: { beginAtZero: true, max: 100, title: { display: true, text: 'Humidité (%)' }}
             }
         }
     });
 
-</script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const modalElement = document.getElementById('modalHumidite');
+        const modalInstance = new bootstrap.Modal(modalElement);
+        const ctxModalHum = document.getElementById('humiditeModalChart').getContext('2d');
+        let modalHumChart = null;
+
+        // Données pour le modal
+        const graphsHumData = {
+            "3": {
+                labels: labelsHumidite,
+                datasets: [
+                    {
+                        label: 'Humidité du sol (%)',
+                        data: valeursSol,
+                        borderColor: '#768D3E',
+                        backgroundColor: 'rgba(169, 202, 89, 0.2)',
+                        fill: true,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Humidité (%)',
+                        data: valeursHum,
+                        borderColor: '#A9CA59',
+                        backgroundColor: 'rgba(118, 141, 62, 0.2)',
+                        fill: true,
+                        tension: 0.3
+                    }
+                ]
+            }
+            // Ajoute d'autres id si besoin
+        };
+
+        function drawModalHumChart(id) {
+            const data = graphsHumData[id];
+            if (!data) {
+                alert('Données du graphique introuvables.');
+                return;
+            }
+
+            if (modalHumChart) modalHumChart.destroy();
+
+            modalHumChart = new Chart(ctxModalHum, {
+                type: 'line',
+                data: {
+                    labels: data.labels,
+                    datasets: data.datasets
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: { title: { display: true, text: 'Date / Heure' }},
+                        y: { beginAtZero: true, max: 100, title: { display: true, text: 'Humidité (%)' }}
+                    }
+                }
+            });
+        }
+
+        document.querySelectorAll('.voirPlus').forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.dataset.id;
+                drawModalHumChart(id);
+                modalInstance.show();
+            });
+        });
+    });
+
+
+    </script>
+
 
 </body>
 </html>

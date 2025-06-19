@@ -6,7 +6,8 @@ class Controller_admin extends Controller {
     }
 
     public function action_admin() {
-        $users = $this->get_users_with_roles();
+        $model = Model::getModel();
+        $users = $model->getActiveUsersWithRoles();;
         $data = ["erreur" => false,
             "users" => $users];
         $this->render("admin", $data);
@@ -35,27 +36,21 @@ class Controller_admin extends Controller {
         $model = Model::getModel();
         $data = json_decode(file_get_contents('php://input'), true);
         if (!empty($data['id'])) {
+            // Ici on met "inactif" pour désactiver
             $success = $model->disableUser($data['id'], "actif");
             if ($success) {
                 http_response_code(200);
-                echo json_encode(["message" => "Utilisateur désactivé"]);
+                echo json_encode(["success" => true, "message" => "Utilisateur désactivé"]);
             } else {
                 http_response_code(500);
-                echo json_encode(["message" => "Erreur lors de la désactivation"]);
+                echo json_encode(["success" => false, "message" => "Erreur lors de la désactivation"]);
             }
         } else {
             http_response_code(400);
-            echo json_encode(["message" => "ID utilisateur manquant"]);
+            echo json_encode(["success" => false, "message" => "ID utilisateur manquant"]);
         }
     }
 
-    public function disableUser($userId, $etat) {
-        $stmt = $this->db->prepare("UPDATE Personne SET etat = :etat WHERE id = :userId");
-        $stmt->execute([
-            'etat' => $etat,
-            'userId' => $userId
-        ]);
-    }
 
     public function action_toggle_role() {
         session_start();

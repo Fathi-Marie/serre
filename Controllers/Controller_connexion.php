@@ -15,8 +15,14 @@ class Controller_connexion extends Controller {
         $mdp = $_POST['password']; 
         $personne = $model->personneConnexion($email);
 
-        if  ($personne && password_verify($mdp, $personne['mdp'])) { 
-            $idpersonne= $personne['id'];
+        if  ($personne && password_verify($mdp, $personne['mdp'])) {
+
+            if ($personne['etat'] == 'actif') {
+                $data = ["erreur" => true, "message" => "Compte inactif. Veuillez contacter l'administrateur."];
+                $this->render("connexion", $data);
+                return;
+            }
+
             session_start();
             $_SESSION['user'] = [
                 'id' => $personne['id'],

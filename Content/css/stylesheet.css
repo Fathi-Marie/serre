@@ -1,140 +1,113 @@
+/* Reset de base */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f4f4f4;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /* Navbar générale */
 .navbar {
-    color: var(--blue);
-    background-color: white;
+    color: #a9ca59;
+    font-size: 20px;
     position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+/* Conteneur de la navbar en flex */
 .navbar-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1% 2%;
-}
-
-.navbar-logo img {
-    width: 70%;
-    height: 9%;
-}
-
-.navbar-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--blue);
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.navbar-menu {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    width: 70%;
-}
-
-.navbar-links {
-    list-style: none;
-    display: flex;
-    justify-content: space-around; /* Aligne les éléments avec espace autour */
-    align-items: center;
+    justify-content: space-between; /* espace entre logo / liens / droite */
+    padding: 0 20px;
     width: 100%;
+    box-sizing: border-box;
+}
+
+/* Logo à gauche */
+.navbar-logo {
+    flex: 0 0 auto; /* taille fixe */
+}
+
+/* Liens au centre */
+.navbar-links {
+    display: flex;
+    flex: 1 1 auto; /* prend tout l’espace possible */
+    justify-content: center;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .navbar-links li a {
-    color: var(--blue);
     text-decoration: none;
-    font-size: large;
-    font-weight: bolder;
-    text-transform: uppercase;
+    color: inherit;
+    font-weight: 600;
 }
 
+/* Zone droite (connexion/déconnexion) */
 .navbar-right {
+    flex: 0 0 auto;
     display: flex;
-    gap: 10px;
+    gap: 15px;
     align-items: center;
-    justify-content: end;
-    img{
-        min-height: 45px;
-        width: auto;
-
-    }
+    justify-content: flex-end;
 }
 
-.btn-account button {
-    background-color: white;
-    flex-wrap: nowrap;
+.navbar-right img {
+    min-height: 45px;
+    width: auto;
 }
 
-.btn-account button:hover {
-    background-color: var(--blue);
-    color: white;
-    border: var(--blue);
+/* Style des boutons connexion/déconnexion */
+.btn-account {
+    padding: 15px 35px !important;
+    border-radius: 4px;
+    border: transparent !important;
+    margin-left: 0;
+    text-decoration: none;
+    font-size: 20px !important;
+    color: #a9ca59 !important;
+    background-color: #212811 !important;
+    transition: background-color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
 }
 
+.btn-account:hover {
+    background-color: #a9ca59 !important;
+    color: #212811 !important;
+}
+
+/* Icône profil admin */
 .icon-translate img {
     height: 20px;
 }
 
-.arrow {
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-    transform: rotate(45deg);
-  }
-  
-  .up {
-    transform: rotate(-135deg);
-    -webkit-transform: rotate(-135deg);
-  }
-  
-  .down {
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-  }
-
-/* Responsiveness */
+/* Responsive */
 @media (max-width: 1054px) {
-    .navbar-toggle {
-        display: block;
+    .navbar-container {
+        flex-wrap: wrap;
     }
-    .navbar-menu {
-        display:none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%; /* S'affiche juste en dessous de la navbar */
-        left: 0;
-        width: 100%;
-        background-color: #f9f9f9; /* Fond du menu déroulant */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Léger effet d'ombre */
-        padding: 10px 0;
-        border-radius: 5px;
-    }
-
-    .navbar-menu.active {
-        display: flex; /* Affiche le menu lorsqu'il est actif */
-    }
-
     .navbar-links {
-        flex-direction: column;
+        width: 100%;
+        order: 3;
+        justify-content: center;
+        margin-top: 10px;
         gap: 10px;
-        align-items: baseline;
-        padding-left: 70%;
-    }
-
-    li{
-        text-align: left;
     }
     .navbar-right {
-        flex-direction: column;
-        gap: 10px;
-        display: flex;
+        order: 2;
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    .navbar-logo {
+        order: 1;
     }
 }

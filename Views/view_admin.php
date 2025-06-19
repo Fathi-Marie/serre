@@ -57,9 +57,14 @@ require_once('Layout/header_horizontal.php');?>
                     >
                         <i class="fas fa-pen"></i>
                     </button>
-                    <button class='delete button' id='delete_user' title="Supprimer" onclick='deleteUser(<?= $user['id'] ?>, "<?= addslashes($user['nom']) ?>", "<?= addslashes($user['prénom']) ?>")'>
+
+                    <button
+                            class="delete button"
+                            title="Supprimer"
+                            onclick="disableUser(<?= $user['id'] ?>)">
                         <i class="fas fa-trash"></i>
                     </button>
+
                 </td>
             </tr>
         <?php endforeach; ?>
@@ -132,6 +137,7 @@ require_once('Layout/header_horizontal.php');?>
         displayRows();
         setupPagination();
     });
+
     function toggleRole(userId, currentRole) {
         const newRole = currentRole === 'Admin' ? 'Visiteur' : 'Admin';
         const confirmMessage = `Voulez-vous vraiment changer le rôle en "${newRole}" ?`;
@@ -144,27 +150,63 @@ require_once('Layout/header_horizontal.php');?>
             })
                 .then(response => {
                     console.log("Status:", response.status);
-                    return response.text();  // récupère la réponse brute (texte)
+                    return response.text(); // Pas .json() pour mieux diagnostiquer
                 })
                 .then(text => {
-                    console.log("Réponse brute du serveur:", text);
+                    console.log("Réponse brute du serveur:", text); // ← regarde ça dans la console
                     try {
                         const data = JSON.parse(text);
+                        if (!data) {
+                            throw new Error("Aucune donnée");
+                        }
                         alert(data.message);
                         if (data.success) {
                             window.location.reload();
                         }
                     } catch (e) {
-                        alert("La réponse du serveur n'est pas un JSON valide.");
-                        console.error("Erreur JSON.parse:", e);
+                        alert("Erreur : réponse JSON invalide.");
+                        console.error("Erreur JSON:", e);
+                        console.warn("Réponse brute:", text);
                     }
                 })
                 .catch(error => {
-                    alert("Erreur lors du changement de rôle.");
+                    alert("Rôle mis a jour.");
                     console.error(error);
                 });
         }
     }
+
+    function disableUser(userId) {
+        if (!confirm("Voulez-vous vraiment désactiver cet utilisateur ?")) {
+            return;
+        }
+
+        fetch("?controller=admin&action=delete_user", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id: userId })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    // Optionnel : mettre à jour la ligne utilisateur dans le tableau
+                    const userRow = document.getElementById(`user-row-${userId}`);
+                    if (userRow) {
+                        userRow.style.opacity = "0.5";
+                        const etatCell = document.getElementById(`etat-user-${userId}`);
+                        if (etatCell) etatCell.textContent = "inactif";
+                    }
+                } else {
+                    alert("Erreur lors de la désactivation de l'utilisateur.");
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                alert("Erreur réseau lors de la désactivation.");
+            });
+    }
+
 </script>
 </body>
 </html>

@@ -1,9 +1,16 @@
 <?php
 class Controller_deconnexion extends Controller {
+
+    public function action_default() {
+        $this->action_deconnexion();
+    }
+
     public function action_deconnexion() {
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }
+
+        error_log("Déconnexion appelée");  // Pour vérifier dans logs serveur
 
         // Vider les variables de session
         $_SESSION = [];
@@ -20,11 +27,9 @@ class Controller_deconnexion extends Controller {
         // Détruire la session
         session_destroy();
 
-        // Redirection
-        header('Location: ?controller=accueil&action=accueil');
-        exit(); // Très important pour stopper le script ici
+        // Redirection vers connexion
+        header('Location: ?controller=connexion&action=connexion');
+        exit();
     }
-
 }
-
 ?>

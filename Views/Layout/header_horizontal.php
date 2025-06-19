@@ -149,9 +149,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
         <?php endif; ?>
     </ul>
     <div class="mt-auto p-3">
-        <a href="?controller=deconnexion&action=deconnexion">
-            <button class="btn btn-outline-light btn-logout">Déconnexion</button>
-        </a>
+        <button class="btn btn-outline-light btn-logout" onclick="window.location.href='?controller=deconnexion&action=deconnexion';">
+            Déconnexion
+        </button>
     </div>
 </nav>
 

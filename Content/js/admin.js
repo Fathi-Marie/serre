@@ -64,29 +64,3 @@ document.addEventListener('DOMContentLoaded', () => {
     setupPagination();
 });
 
-function toggleRole(userId, currentRole) {
-    const newRole = currentRole === 'Admin' ? 'Visiteur' : 'Admin';
-    const confirmMessage = `Voulez-vous vraiment changer le rôle en "${newRole}" ?`;
-
-    if (confirm(confirmMessage)) {
-        fetch("?controller=admin&action=toggle_role", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ id: userId, role: newRole })
-        })
-            .then(response =>{
-                console.log("Réponse brute :", response);
-                response.json();
-            })
-            .then(data => {
-                alert(data.message);
-                if (data.success) {
-                    window.location.reload();
-                }
-            })
-            .catch(error => {
-                alert("Erreur lors du changement de rôle.");
-                console.error(error);
-            });
-    }
-}
