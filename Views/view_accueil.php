@@ -1,106 +1,149 @@
 <?php
 require_once('Layout/view_header.php');?>
+<?php
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Accueil</title>
+    <meta charset="UTF-8" />
+    <title>Eclosia - Accueil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="Content/css/accueil.css">
 </head>
-    <!-- Section principale -->
-    <div class="part1">
-        <h1>Trouve Ton Logement<br>Étudiant Aujourd'hui !</h1>
-        /<a href="?controller=pagelogement&action=pagelogementController"><button>Recherche un logement</button></a>
-    </div>
+<body>
 
-    <!-- Section fonctionnalités -->
-    <div class="part2">
-        <div class="row">
-            <div class="element">
-                <img src="Content/Images/Accueil/globe.png" alt="Image 1">
-                <h3>Disponible en plusieurs langues</h3>
-            </div>
-            <div class="element">
-                <img src="Content/Images/Accueil/demenage.png" alt="Image 2">
-                <h3>Services de déménagement</h3>
-            </div>
-            <div class="element">
-                <img src="Content/Images/Accueil/charges.png" alt="Image 3">
-                <h3>Comparateur de charges</h3>
-            </div>
-            <div class="element">
-                <img src="Content/Images/Accueil/bourse.png" alt="Image 4">
-                <h3>Éligibilité aux bourses / aides</h3>
-            </div>
+<section class="hero">
+    <h1>Bienvenue chez Eclosia</h1>
+    <p>Surveillez, automatisez et faites grandir vos environnements vivants</p>
+    <a href="?controller=connexion&action=connexionController" class="btn btn-eclosia">Accéder au Tableau de Bord</a>
+</section>
 
-        </div>
-    </div>
-
-    <!-- Section types de logement -->
-    <div class="part3">
-        <h1>Choisis le type de logement qui te convient !</h1>
-        <div class="row">
-            <?php foreach ($logements as $logement): ?>
-                <div class="box">
-                    <img src="<?php echo 'Content/Images/Accueil/' . $logement['type'] . '.jpeg'; ?>" alt="<?php echo htmlspecialchars($logement['type']); ?>">
-                    <a href="?controller=pagelogement&action=pagelogement" class="icon-translate">
-                        <h3><?php echo htmlspecialchars($logement["type"]); ?></h3>
-                    </a>
+<section class="section">
+    <div class="container">
+        <h2 class="text-center mb-5">Nos Capteurs & Actionneurs</h2>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="feature-card">
+                    <i class="fas fa-thermometer-half fa-2x mb-3"></i>
+                    <h5>Température</h5>
+                    <p>Mesurez et régulez la chaleur ambiante avec précision.</p>
                 </div>
-            <?php endforeach; ?>
-
-        </div>
-        <h1>Choisis ta ville !</h1>
-        <div class="row">
-            <?php foreach ($villes as $ville): ?>
-                <div class=box>
-                    <img src="<?php echo 'Content/Images/Accueil/' . $ville['nom_ville'] . '.jpeg'; ?>" alt="<?php echo htmlspecialchars($ville['nom_ville']); ?>">
-                    <a href="?controller=pagelogement&action=pagelogement" class="icon-translate">
-                        <h3><?php echo $ville['nom_ville']; ?></h3>
-                    </a>
-                </div>
-            <?php endforeach;?>
-        </div>
-
-        <button>Lancer la recherche</button>
-    </div>
-
-    <!-- Section atouts -->
-    <div class="part4">
-        <div class="box-container">
-            <box class="box">
-                <div class="box-header">
-                    <img src="Content/Images/Accueil/reactivite.png" alt="Réactivité">
-                    <h3>Réactivité</h3>
-                </div>
-                <p>Besoin d'une réponse rapide ? Sur notre site, vous êtes informé en temps réel des nouvelles annonces correspondant à vos critères. Activez des alertes personnalisées et soyez le premier à découvrir les meilleures opportunités de logement.
-                </p>
-            </box>
-            <div class="box">
-                <div class="box-header">
-                    <img src="Content/Images/Accueil/simple.png" alt="Simplicité">
-                    <h3>Simplicité d'utilisation</h3>
-                </div>
-                <p>La recherche d'un logement ne devrait pas être compliquée. Ici, tout est fait pour vous faciliter la tâche. En quelques clics, vous trouvez, filtrez et postulez aux logements qui vous correspondent. Naviguer n’a jamais été aussi simple et intuitif !</p>
             </div>
-            <div class="box">
-                <div class="box-header">
-                    <img src="Content/Images/Accueil/transparance.png" alt="Transparence">
-                    <h3>Transparence</h3>
+            <div class="col-md-3">
+                <div class="feature-card">
+                    <i class="fas fa-sun fa-2x mb-3"></i>
+                    <h5>Luminosité</h5>
+                    <p>Optimisez la lumière pour vos cultures ou vos espaces.</p>
                 </div>
-                <p>Pas de surprises, que des informations claires. Chaque annonce est accompagnée de détails précis : prix total, conditions du bail, et même les avis d'anciens locataires. Vous savez exactement à quoi vous attendre avant de visiter.</p>
             </div>
-            <div class="box">
-                <div class="box-header">
-                    <img src="Content/Images/Accueil/tel.png" alt="Accompagnement">
-                    <h3>Accompagnement Personnalisé</h3>
+            <div class="col-md-3">
+                <div class="feature-card">
+                    <i class="fas fa-smog fa-2x mb-3"></i>
+                    <h5>Gaz</h5>
+                    <p>Détectez les gaz nocifs ou contrôlez la qualité de l'air.</p>
                 </div>
-                <p>Vous ne savez pas par où commencer ou quels documents préparer ? Pas de panique ! Nous sommes là pour vous accompagner à chaque étape. Des conseils personnalisés et un chat en direct vous aident à poser toutes vos questions et à avancer sereinement dans votre recherche.</p>
+            </div>
+            <div class="col-md-3">
+                <div class="feature-card">
+                    <i class="fas fa-robot fa-2x mb-3"></i>
+                    <h5>Actionneurs</h5>
+                    <p>Automatisez les réactions : ventilation, arrosage, etc.</p>
+                </div>
             </div>
         </div>
     </div>
-</body>
-</html>
-<?php
-require_once('Layout/footer.php');
-?>
+</section>
+<section class="section deuxieme">
+    <div class="container">
+        <h2 class="text-center text-white ">Aperçu en direct</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <canvas id="tempChart"></canvas>
+            </div>
+            <div class="col-md-4">
+                <canvas id="lightChart"></canvas>
+            </div>
+            <div class="col-md-4">
+                <canvas id="gasChart"></canvas>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container footer-container">
+        <div class="footer-links">
+            <a href="?controller=mentionslégales">Mentions légales</a>
+            <a href="?controller=cgu">CGU</a>
+        </div>
+        <div class="footer-copy">
+            &copy; <?php echo date('Y'); ?> Eclosia - Tous droits réservés
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const options = {
+        type: 'line',
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { labels: { color: 'white' } },
+            },
+            scales: {
+                x: { ticks: { color: 'white' }, grid: { color: '#333' } },
+                y: { ticks: { color: 'white' }, grid: { color: '#333' } },
+            }
+        }
+    };
+
+    new Chart(document.getElementById('tempChart'), {
+        ...options,
+        data: {
+            labels: ['8h', '10h', '12h', '14h', '16h'],
+            datasets: [{
+                label: 'Température (°C)',
+                data: [18, 20, 22, 24, 23],
+                borderColor: '#768D3E',
+                backgroundColor: 'rgba(118, 141, 62, 0.3)',
+                fill: true,
+            }]
+        }
+    });
+
+    new Chart(document.getElementById('lightChart'), {
+        ...options,
+        data: {
+            labels: ['8h', '10h', '12h', '14h', '16h'],
+            datasets: [{
+                label: 'Luminosité (%)',
+                data: [30, 45, 70, 80, 60],
+                borderColor: '#f1c40f',
+                backgroundColor: 'rgba(118, 141, 62, 0.3)',
+                fill: true,
+            }]
+        }
+    });
+
+    new Chart(document.getElementById('gasChart'), {
+        ...options,
+        data: {
+            labels: ['8h', '10h', '12h', '14h', '16h'],
+            datasets: [{
+                label: 'Gaz détecté (ppm)',
+                data: [200, 210, 250, 220, 190],
+                borderColor: '#768D3E',
+                backgroundColor: 'rgba(241, 196, 15, 0.3)',
+                fill: true,
+            }]
+        }
+    });
+</script>
+

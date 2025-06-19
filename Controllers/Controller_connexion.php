@@ -13,25 +13,26 @@ class Controller_connexion extends Controller {
         $model = Model::getModel(); 
         $email = $_POST['email']; 
         $mdp = $_POST['password']; 
-        $personne = $model->personneConnexion($email); 
+        $personne = $model->personneConnexion($email);
 
-        if  ($personne && password_verify($mdp, $personne['mdp'])) { 
-            $idpersonne= $personne['id']; 
+        if  ($personne && password_verify($mdp, $personne['mdp'])) {
+
+            if ($personne['etat'] == 'actif') {
+                $data = ["erreur" => true, "message" => "Compte inactif. Veuillez contacter l'administrateur."];
+                $this->render("connexion", $data);
+                return;
+            }
+
             session_start();
-            $_SESSION['idpersonne'] = $idpersonne; 
-            $_SESSION['prenom'] = $personne['prénom'];
-            $data = ["erreur" => false]; 
+            $_SESSION['user'] = [
+                'id' => $personne['id'],
+                'prenom' => $personne['prénom'],
+                'nom' => $personne['nom'],
+                'email' => $personne['email'],
+                'role' => $personne['role']
+            ];
 
-//            if ($model->hasRole($idpersonne, 'Admin')) {
-//                header('Location: ?controller=admin&action=admin');
-//                return;
-//            }
-//            if ($model->hasRole($idpersonne, 'Propriétaire')) {
-//                header('Location: ?controller=acceuil&action=acceuil');
-//                return;
-//            }
-
-            header('Location: ?controller=acceuil&action=acceuilController');
+            header('Location: ?controller=capteur&action=?dashboardController');
         } 
         else { 
             $data = ["erreur" => true]; 

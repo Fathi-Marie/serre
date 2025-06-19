@@ -1,95 +1,106 @@
-body {
-    background: var(--degrader-vert);
-    color: var(--blue);
+body, html {
+    height: 100vh;
+    margin: 0;
 }
 
-/* Conteneur principal */
-.centre {
-    display: flex;
-    flex-direction: column; /* Aligne les enfants verticalement */
-    justify-content: center;
-    align-items: center;
-    width: 100%; /* Largeur adaptable */
-    padding: 9% 0 7%;
-}
-
-/* Groupes de champs */
-.input-group {
-    width: 75%; /* Largeur par défaut pour les grands écrans */
-    padding: 1%;
-    margin-bottom: 8%; /* Espacement entre les groupes */
+.left-side {
     position: relative;
-}
-
-/* Champs de saisie */
-.input-group input {
-    width: 100%;
-    padding: 1% 15%; /* Espace intérieur en % */
-    border: none;
-
-    box-shadow: 0 0.5em 0.8em rgba(0, 0, 0, 0.1);
-    font-size: 1rem;
-    outline: none;
-}
-
-/* Icône du cadenas */
-.input-group .icon-lock {
-    width: 10%; /* Taille en fonction de la largeur du conteneur */
-    height: auto;
-    position: absolute;
-    top: 50%;
-    left: 3%; /* Espacement intérieur en % */
-    transform: translateY(-50%);
-    pointer-events: none;
-}
-
-/* Texte des placeholders */
-.input-group input::placeholder {
-    font-size: 1rem;
-    color: rgba(0, 0, 0, 0.5);
-}
-
-/* Icônes dans les champs */
-.input-group .icon {
-    position: absolute;
-    top: 50%;
-    left: 3%;
-    transform: translateY(-50%);
-    width: 7%; /* Taille relative */
-    height: auto;
-    pointer-events: none;
-}
-
-/* Icône de l'œil */
-.input-group .eye-icon {
-    position: absolute;
-    top: 50%;
-    right: -20%;
-    transform: translateY(-50%);
-    width: 6%;
-    height: auto;
-    cursor: pointer;
-    z-index: 1;
-}
-
-/* Lien */
-.link {
+    background-image: url('../Images/serre.png');
+    background-size: cover;
+    background-position: center;
+    color: white;
     display: flex;
-    flex-direction: column; /* Aligne les enfants verticalement */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 3%;
-    color: var(--blue);
+    padding-left: 5%;
+    margin-left: 0 !important;
+    z-index: 0;
+}
+
+.left-side::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* noir transparent à 50% */
+    z-index: -1; /* derrière le contenu */
+}
+
+.left-side h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.left-side p{
+    padding-left: 5%;
+}
+
+.left-side button{
+    border-radius: 20px;
+    padding: 10px 35px 10px 35px;
+    background-color: #82CF11;
+    color: #ffff;
+    font-weight: bolder;
+    border: none;
+}
+
+.left-side button:hover{
+    background-color: #212811;
+    color: #a9ca59;
+}
+
+.no-style-link {
     text-decoration: none;
-
-}
-.button {
-    margin-top: 5%;
-    display: block; /* Garde le bouton en tant qu'élément de bloc */
-    margin-left: auto; /* Centre horizontalement */
-    margin-right: auto; /* Centre horizontalement */
+    color: inherit;
 }
 
-.link:hover {
-    text-decoration: underline;
+
+.right-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 2rem;
 }
+.login-form {
+    width: 100%;
+    max-width: 400px;
+}
+.right-side h2{
+    text-align: center;
+    align-items: center;
+    color: #82CF11;
+    font-weight: bolder;
+}
+.right-side input{
+    background-color: #EEEEF1;
+    border: none;
+    padding: 15px 40px 15px 10px;
+}
+.right-side input::placeholder {
+    color: #A8A8A8;
+    opacity: 1;
+    font-size: 16px;
+}
+
+.right-side button{
+    border-radius: 20px;
+    padding: 10px 45px 10px 45px;
+    background-color: #82CF11;
+    color: #ffff;
+    font-weight: bolder;
+}
+
+.right-side button:hover{
+    background-color: #212811;
+    color: #a9ca59;
+}
+
+.input-group-text {
+    background-color: #EEEEF1 !important;
+    border: none !important;
+    color: #A8A8A8 !important;
+}
+
+#E9FFC9

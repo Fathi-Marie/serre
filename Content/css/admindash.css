@@ -1,0 +1,77 @@
+
+body{
+    background-color: #E9E9ED;
+}
+
+h1{
+    color: #212811 ;
+}
+
+.supp{
+    background-color: #212811;
+    color: #a9ca59;
+}
+
+.btn.add{
+    background-color: #768D3E !important;
+    color: #ffffff !important;
+    border-radius: 5px !important;
+}
+
+.card-graph{
+    border-radius: 15px 0 15px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    background-color: #fff;
+}
+.actionneur input{
+    padding: 2px 2px 2px 2px !important;
+    width: 24%;
+}
+
+th{
+    color: #212811 !important;
+}
+
+#searchCapteurs{
+    width: 96%;
+    background-color: #E5EFCD;
+}
+
+#searchActionneurs{
+    width: 96%;
+    background-color: #E5EFCD;
+}
+
+table{
+    border: #a9ca59 !important;
+}
+
+#capteursTable tbody tr:nth-child(odd) {
+    background-color: #212811 !important;
+    color: #a9ca59 !important;
+}
+
+#capteursTable tbody tr:nth-child(even) {
+    background-color: #a9ca59!important;
+    color: #212811 !important;
+}
+
+input{
+    border-color: #a9ca59;
+    border-radius: 5px;
+    padding: 3px 9px 3px 3px;
+}
+form{
+    margin-bottom: 2px !important;
+}
+.voirGraph{
+    background-color: white !important;
+}
+
+select {
+    text-transform: none;
+    padding: 5px 5px 5px 5px !important;
+    border-radius: 2px;
+    background-color: #a9ca59!important;
+    color: #212811 !important;
+}

@@ -32,7 +32,7 @@ require_once('Layout/view_header.php');?><!DOCTYPE html>
         <button class="button">Sauvegarder</button>
 
         <!-- Lien retour à la connexion -->
-        <a href="view_connexion.php" class="link">Retour à la connexion</a>
+        <a href="view_connexions.php" class="link">Retour à la connexion</a>
     </div>
 
 <?php

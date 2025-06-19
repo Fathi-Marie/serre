@@ -1,0 +1,48 @@
+body{
+    background-color: #E9E9ED;
+}
+canvas {
+    max-height: 310px;
+}
+
+.voirPlus{
+    font-weight: bolder;
+    color: #768D3E;
+
+}
+
+.valeur_resum{
+    background-color: white;
+    color: #a9ca59;
+    font-weight: bolder;
+}
+
+.resum-container {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    align-items: center;
+}
+
+.resum-container > div {
+    min-width: 120px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-right: 1px solid #ccc;
+     margin-right: 10px;
+}
+
+.resum-container > div:last-child {
+    border-right: none;
+}
+
+.card.p-3 {
+    border-radius: 15px 0 15px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    background-color: #fff;
+}
+
+.d-flex.justify-content-evenly > div {
+    min-width: 120px;
+    padding: 0 15px;
+}

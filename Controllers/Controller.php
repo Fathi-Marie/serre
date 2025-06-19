@@ -63,22 +63,4 @@ abstract class Controller
         $this->render("message", $data);
     }
 
-    public function get_logements_adresse($logements) {
-        $model = Model::getModel();
-        $logementsWithAdresse = [];
-        foreach ($logements as $logement) {
-            $adresse = $model->getdataById('Adresse', $logement['adresse']);
-            $logement['adresse'] = $adresse["numero"] . ' ' . $adresse['rue'] . ', ' . $adresse['code_postal'] . ' ' . $adresse['ville'];
-            $logement['signale'] = $this->est_signale($logement['id']);
-            $logementsWithAdresse[] = $logement;
-        }
-        return $logementsWithAdresse;
-    }
-
-    public function est_signale($id_logement) {
-        $model = Model::getModel();
-        $logements_signale = $model->getReportedLogements();
-        $logements_signale_ids = array_column($logements_signale, 'id_logement');
-        return in_array($id_logement, $logements_signale_ids);
-    }
 }
