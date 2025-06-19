@@ -12,9 +12,10 @@ h1{
     color: #a9ca59;
 }
 
-.add{
-    background-color: #768D3E;
-    color: #ffffff;
+.btn.add{
+    background-color: #768D3E !important;
+    color: #ffffff !important;
+    border-radius: 5px !important;
 }
 
 .card-graph{
@@ -67,12 +68,10 @@ form{
     background-color: white !important;
 }
 
-.actif{
-    background-color: #a9ca59;
-    color: #212811 ;
-}
 select {
     text-transform: none;
+    padding: 5px 5px 5px 5px !important;
+    border-radius: 2px;
     background-color: #a9ca59!important;
     color: #212811 !important;
 }

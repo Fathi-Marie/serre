@@ -9,9 +9,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     <meta charset="UTF-8" />
     <title>Accueil</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="Content/css/headerHorizontal.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="Content/css/headerHorizontal.css" />
     <style>
         body {
             margin: 0;

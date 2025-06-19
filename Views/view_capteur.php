@@ -444,10 +444,7 @@ require_once('Layout/header_horizontal.php');?>
 
         function drawModalHumChart(id) {
             const data = graphsHumData[id];
-            if (!data) {
-                alert('Données du graphique introuvables.');
-                return;
-            }
+
 
             if (modalHumChart) modalHumChart.destroy();
 

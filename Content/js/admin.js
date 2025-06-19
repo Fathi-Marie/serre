@@ -32,8 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const btn = document.createElement('button');
             btn.textContent = i;
             btn.classList.add('btn', 'btn-sm', 'mx-1');
-            if (i === currentPage) btn.classList.add('btn-primary');
-            else btn.classList.add('btn-outline-primary');
+            if (i === currentPage) btn.classList.add('numero_page');
+            else btn.classList.add('numero_page_suivant');
 
             btn.addEventListener('click', () => {
                 currentPage = i;
@@ -63,4 +63,42 @@ document.addEventListener('DOMContentLoaded', () => {
     displayRows();
     setupPagination();
 });
+
+function toggleRole(userId, currentRole) {
+    const newRole = currentRole === 'Admin' ? 'Visiteur' : 'Admin';
+    const confirmMessage = `Voulez-vous vraiment changer le rôle en "${newRole}" ?`;
+
+    if (confirm(confirmMessage)) {
+        fetch("?controller=admin&action=toggle_role", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id: userId, role: newRole })
+        })
+            .then(response => {
+                console.log("Status:", response.status);
+                return response.text(); // Pas .json() pour mieux diagnostiquer
+            })
+            .then(text => {
+                console.log("Réponse brute du serveur:", text); // ← regarde ça dans la console
+                try {
+                    const data = JSON.parse(text);
+                    if (!data) {
+                        throw new Error("Aucune donnée");
+                    }
+                    alert(data.message);
+                    if (data.success) {
+                        window.location.reload();
+                    }
+                } catch (e) {
+                    alert("Erreur : réponse JSON invalide.");
+                    console.error("Erreur JSON:", e);
+                    console.warn("Réponse brute:", text);
+                }
+            })
+            .catch(error => {
+                alert("Rôle mis a jour.");
+                console.error(error);
+            });
+    }
+}
 
