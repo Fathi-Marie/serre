@@ -8,7 +8,7 @@ require_once('Layout/header_horizontal.php');?>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="Content/js/capteur.js" defer></script>
+<!--    <script src="Content/js/capteur.js" defer></script>-->
     <link rel="stylesheet" href="Content/css/capteur.css">
 </head>
 <body>
@@ -51,7 +51,7 @@ require_once('Layout/header_horizontal.php');?>
                         Voir plus
                     </button>
                 </div>
-                <canvas id="tempHumChart" style="height: 250px; width: 100%;"></canvas>
+                <canvas id="tempHumChart" style="width: 100%; height: 300px;"></canvas>
             </div>
         </div>
 
@@ -84,7 +84,7 @@ require_once('Layout/header_horizontal.php');?>
                         Voir plus
                     </button>
                 </div>
-                <canvas id="gazChart" style="height: 250px; width: 100%;"></canvas>
+                <canvas id="humiditeSolChart" style="height: 250px; width: 100%;"></canvas>
             </div>
         </div>
     </div>
@@ -105,7 +105,7 @@ require_once('Layout/header_horizontal.php');?>
                     <option value="week">Semaine</option>
                     <option value="month">Mois</option>
                 </select>
-                <canvas id="tempHumChartLarge" style="width: 100%;"></canvas>
+                <canvas id="humiditeSolChart" style="height: 250px; width: 100%;"></canvas>
             </div>
         </div>
     </div>
@@ -151,14 +151,161 @@ require_once('Layout/header_horizontal.php');?>
 </div>
 
 <script>
-    const tempHumData = <?= json_encode($tempHumData) ?>;
-    const luminositeData = <?= json_encode($luminositeData) ?>;
     const gazData = <?= json_encode($gazData) ?>;
     const actionneursState = <?= json_encode($actionneursState) ?>;
 </script>
 
+<script>
+    // Injection PHP des données
+    const tempHumData = <?= json_encode($tempHumData) ?>;
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    // Extraction des labels (dates) et des valeurs
+    const labels = tempHumData.map(item => {const date = new Date(item.date_heure);
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        return `${hours}:${minutes}`;
+    });
+    const dataValues = tempHumData.map(item => item.valeur);
+
+    // Récupération du contexte canvas
+    const ctx = document.getElementById('tempHumChart').getContext('2d');
+
+    // Création du graphique Chart.js
+    const tempHumChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Température (°C)',
+                data: dataValues,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    type: 'category',
+                    title: {
+                        display: true,
+                        text: 'Date / Heure'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Température (°C)'
+                    },
+                    beginAtZero: false
+                }
+            }
+        }
+    });
+
+
+    // Injection PHP des données luminosité
+    const luminositeData = <?= json_encode($luminositeData) ?>;
+
+    // Extraction des labels (dates) et des valeurs
+    const labelsLum = luminositeData.map(item => {const date = new Date(item.date_heure);
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
+    });
+    const dataLumValues = luminositeData.map(item => item.valeur);
+
+    // Récupération du contexte canvas
+    const ctxLum = document.getElementById('luminositeChart').getContext('2d');
+
+    // Création du graphique Chart.js pour la luminosité
+    const luminositeChart = new Chart(ctxLum, {
+        type: 'line',
+        data: {
+            labels: labelsLum,
+            datasets: [{
+                label: 'Luminosité (lux)',
+                data: dataLumValues,
+                borderColor: 'rgba(255, 206, 86, 1)',
+                backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    type: 'category',
+                    title: {
+                        display: true,
+                        text: 'Date / Heure'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Luminosité (lux)'
+                    },
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    const humiditeSolData = <?= json_encode($humidite_sol) ?>;
+
+    // Préparation labels et valeurs
+    const labelsHumiditeSol = humiditeSolData.map(item => {
+        const date = new Date(item.date_heure);
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        return `${hours}:${minutes}`;
+    });
+    const dataValuesHumiditeSol = humiditeSolData.map(item => item.valeur);
+
+    // Récupération du contexte canvas
+    const ctxHumiditeSol = document.getElementById('humiditeSolChart').getContext('2d');
+
+    // Création du graphique Chart.js
+    const humiditeSolChart = new Chart(ctxHumiditeSol, {
+        type: 'line',
+        data: {
+            labels: labelsHumiditeSol,
+            datasets: [{
+                label: 'Humidité du sol (%)',
+                data: dataValuesHumiditeSol,
+                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    type: 'category',
+                    title: {
+                        display: true,
+                        text: 'Date / Heure'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    title: {
+                        display: true,
+                        text: 'Humidité du sol (%)'
+                    }
+                }
+            }
+        }
+    });
+
+</script>
 
 </body>
 </html>

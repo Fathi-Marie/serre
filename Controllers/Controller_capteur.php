@@ -1,5 +1,8 @@
 
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 class Controller_capteur extends Controller {
 
     public function action_construct() {
@@ -12,18 +15,20 @@ class Controller_capteur extends Controller {
     public function action_dashboard() {
         $model = Model::getModel();
 
-        $tempHumData = $model->getHistoricalDataByType('Température/Humidité');
-        $luminositeData = $model->getHistoricalDataByType('Luminosité');
-        $gazData = $model->getHistoricalDataByType('Gaz');
-        $actionneursState = $model->getActuatorsState();
-        $tempInt = $model->getDerniereTemperatureInterieure();
+        $tempHumData = $model->getHistoricalDataByType('temperature');
+        $luminositeData = $model->getHistoricalDataByType('luminosite');
+        $humidite = $model->getHistoricalDataByType('humidite');
+        $humidite_sol = $model->getHistoricalDataByType('humidite_sol');
+        $actionneursState = $model->getActionneursState();
+        $tempInterieure = $model->getDerniereTemperatureInterieure();
 
         $data = [
             'tempHumData' => $tempHumData,
             'luminositeData' => $luminositeData,
-            'gazData' => $gazData,
+            'humidite' => $humidite,
+            'humidite_sol' => $humidite_sol,
             'actionneursState' => $actionneursState,
-            'temperatureInterieure' => $tempInt,
+            'temperatureInterieure' => $tempInterieure,
             'erreur' => false
         ];
 
